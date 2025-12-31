@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-   
     public float moveSpeed = 5f;
     public float gravity = -9.81f;
     public float rotationSpeed = 12f;
@@ -21,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
         //  KAMERA DEÐÝL, YAW ROOT
         camYaw = CameraManager.Instance.cameraYawRoot;
     }
-
     void Update()
     {
         float h = Input.GetAxis("Horizontal");
