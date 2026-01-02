@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dropZone : MonoBehaviour
+public class plateZone : MonoBehaviour
 {
-    public Transform snapPoint;
+    public GameObject plate;
 }

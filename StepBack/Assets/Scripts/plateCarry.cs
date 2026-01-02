@@ -6,81 +6,91 @@ public class plateCarry : MonoBehaviour
 {
     public Transform carryPoint;
 
-    public GameObject carriedPlate;
-    public dropZone currentZone;
+    GameObject carriedPlate;        // elde tutulan tabak
+    GameObject plateInRange;        // yakýndaki tabak
+    dropZone currentDropZone;  // içinde bulunulan tezgâh alaný
 
     void Update()
     {
-        if (!CameraManager.Instance.IsThirdPerson()) return;
-
+        // TABAK ALMA
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (carriedPlate == null)
-                TryPickPlate();
+            if (carriedPlate == null && plateInRange != null)
+            {
+                PickPlate();
+                KarakterIcSesManager.Instance.ShowText("Mutfaða býrakmalýyým");
+            }
         }
 
+        // TABAK BIRAKMA (SADECE TEZGÂHTA)
         if (Input.GetKeyDown(KeyCode.L))
         {
-            if (carriedPlate != null)
-                TryDropPlate();
-        }
-    }
-
-    void TryPickPlate()
-    {
-        Camera cam = CameraManager.Instance.GetActiveCamera();
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 2f))
-        {
-            if (hit.transform.CompareTag("Plate"))
+            if (carriedPlate != null && currentDropZone != null)
             {
-                carriedPlate = hit.transform.gameObject;
-
-                carriedPlate.transform.SetParent(carryPoint);
-                carriedPlate.transform.localPosition = Vector3.zero;
-                carriedPlate.transform.localRotation = Quaternion.identity;
-
-                KarakterIcSesManager.Instance.ShowText("Bunlarý tezgâha býrakmalýyým.");
+                DropPlate();
+                KarakterIcSesManager.Instance.ShowText("Artýk gitmeliyim");
             }
         }
     }
 
-    void TryDropPlate()
+    void PickPlate()
     {
-        if (currentZone == null)
-        {
-            KarakterIcSesManager.Instance.ShowText("Buraya býrakamam.");
-            return;
-        }
+        carriedPlate = plateInRange;
 
+        // Fizik varsa kapat (elde titremesin)
+        Rigidbody rb = carriedPlate.GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = true;
+
+        carriedPlate.transform.SetParent(carryPoint);
+        carriedPlate.transform.localPosition = Vector3.zero;
+        carriedPlate.transform.localRotation = Quaternion.identity;
+
+        plateInRange = null;
+    }
+
+    void DropPlate()
+    {
         carriedPlate.transform.SetParent(null);
-        carriedPlate.transform.position = currentZone.snapPoint.position;
-        carriedPlate.transform.rotation = currentZone.snapPoint.rotation;
+        carriedPlate.transform.position = currentDropZone.snapPoint.position;
+        carriedPlate.transform.rotation = currentDropZone.snapPoint.rotation;
+
+        Rigidbody rb = carriedPlate.GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = false;
 
         carriedPlate = null;
-        currentZone = null;
-
-        KarakterIcSesManager.Instance.ShowText("Tamam.");
+        currentDropZone = null;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out dropZone zone))
-            currentZone = zone;
+        // Tabak alma alanýna girince
+        if (other.TryGetComponent(out plateZone pickZone))
+        {
+            plateInRange = pickZone.plate;
+            KarakterIcSesManager.Instance.ShowText("Bunlar burda durmamalý");
+        }
+
+        // Tezgâh alanýna girince
+        if (other.TryGetComponent(out dropZone dropZone))
+        {
+            currentDropZone = dropZone;
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out dropZone zone))
+        if (other.TryGetComponent(out plateZone pickZone))
         {
-            if (zone == currentZone)
-                currentZone = null;
+            if (plateInRange == pickZone.plate)
+                plateInRange = null;
+                
+        }
+
+        if (other.TryGetComponent(out dropZone dropZone))
+        {
+            if (currentDropZone == dropZone)
+                currentDropZone = null;
         }
     }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, 3f);
-    }
+
 }
