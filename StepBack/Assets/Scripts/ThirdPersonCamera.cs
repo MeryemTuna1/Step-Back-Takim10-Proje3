@@ -12,7 +12,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+      //  Cursor.lockState = CursorLockMode.Locked;
         yaw = transform.eulerAngles.y;
     }
 

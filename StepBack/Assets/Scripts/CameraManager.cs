@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        SwitchToThirdPerson();
+        SwitchToFirstPerson();
     }
 
     public void SwitchToThirdPerson()
