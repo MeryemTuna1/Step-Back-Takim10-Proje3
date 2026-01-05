@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Plate
+  - npc
+  - oficeIC
+  - etraf
+  - CoworkerGroup
+  - desk
+  - saat
+  - food
+  - Tray
+  - pointt
   layers:
   - Default
   - TransparentFX

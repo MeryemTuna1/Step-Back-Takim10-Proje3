@@ -20,7 +20,7 @@ public class officeTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (triggered) return;
-        if (!other.CompareTag("EditorOnly")) return;
+        if (!other.CompareTag("Player")) return;
 
         triggered = true;
         StartCoroutine(OfficeShockSequence());
