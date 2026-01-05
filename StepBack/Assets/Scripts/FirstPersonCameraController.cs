@@ -10,6 +10,10 @@ public class FirstPersonCameraController : MonoBehaviour
 
     float yaw;
 
+    // SHAKE deðiþkenleri
+    float shakeDuration = 0f;
+    float shakeMagnitude = 0f;
+
     void Start()
     {
         yaw = target.eulerAngles.y;
@@ -32,6 +36,11 @@ public class FirstPersonCameraController : MonoBehaviour
         target.rotation = Quaternion.Euler(0f, yaw, 0f);
     }
 
+    public void StartShake(float duration, float magnitude)
+    {
+        shakeDuration = duration;
+        shakeMagnitude = magnitude;
+    }
 
     /*public Transform target;
     public Vector3 offset = new Vector3(0, 1.6f, 0);
