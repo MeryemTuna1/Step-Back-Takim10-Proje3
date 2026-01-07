@@ -6,7 +6,17 @@ public class LonelyTableSit : MonoBehaviour
 {
     public Transform trayPlacePoint;
 
+    [Header("Yemekhane NPC'leri")]
+    public GameObject[] cafeteriaNPCs;
+
+    [Header("Ofis Davetiyesi")]
+    public GameObject invitationObject;
     bool used = false;
+
+    private void Start()
+    {
+        invitationObject.SetActive(false);
+    }
 
     void OnMouseDown()
     {
@@ -27,14 +37,30 @@ public class LonelyTableSit : MonoBehaviour
 
         used = true;
 
-        // 5 saniye sonra 3rd person'a dön
-        StartCoroutine(ReturnToThirdPerson());
+        StartCoroutine(AfterEating());
     }
 
-    IEnumerator ReturnToThirdPerson()
+    IEnumerator AfterEating()
     {
         yield return new WaitForSeconds(5f);
 
+        // Kamera 3rd Person
         CameraManager.Instance.SwitchToThirdPerson();
+
+        // Ýç ses
+        KarakterIcSesManager.Instance.ShowText(
+            "Doymadým."
+        );
+
+        invitationObject.SetActive(true);
+
+        // NPC'leri yok et
+        foreach (GameObject npc in cafeteriaNPCs)
+        {
+            npc.SetActive(false);
+        }
+
+       
     }
+
 }

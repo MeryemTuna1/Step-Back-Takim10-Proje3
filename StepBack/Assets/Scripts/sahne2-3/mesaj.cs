@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class mesaj : MonoBehaviour
 {
+    public string mesajT;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag=="Player")
         {
-            KarakterIcSesManager.Instance.ShowText("Yine geç kaldým.");
+            KarakterIcSesManager.Instance.ShowText(mesajT);
             CameraManager.Instance.SwitchToTopDown();
         }
     }

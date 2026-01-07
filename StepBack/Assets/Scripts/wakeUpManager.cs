@@ -20,6 +20,7 @@ public class wakeUpManager : MonoBehaviour
             yield return null;
         }
 
-        KarakterIcSesManager.Instance.ShowText("Yine erken bir sabah...");
+        KarakterIcSesManager.Instance.ShowText(
+            "Yine erken bir sabah...");
     }
 }

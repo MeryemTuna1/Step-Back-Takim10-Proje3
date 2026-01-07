@@ -71,4 +71,28 @@ public class CameraManager : MonoBehaviour
     {
         return activeCam == topDownCam;
     }
+
+
+    // === INVITATION / LOOK SYSTEM ===
+    Transform lookTarget;
+    bool looking = false;
+
+    public void LookAtTarget(Transform target)
+    {
+        lookTarget = target;
+        looking = true;
+    }
+
+    public void StopLookAt()
+    {
+        looking = false;
+        lookTarget = null;
+    }
+
+    void LateUpdate()
+    {
+        if (!looking || lookTarget == null || activeCam == null) return;
+
+        activeCam.transform.LookAt(lookTarget);
+    }
 }
