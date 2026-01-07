@@ -22,7 +22,7 @@ public class alarmInteract : MonoBehaviour
                 {
                    // alarmSource.Stop();
                     CameraManager.Instance.SwitchToThirdPerson();
-                    KarakterIcSesManager.Instance.ShowText("Kalkmam lazým...");
+                    KarakterIcSesManager.Instance.ShowText("Yine mi? Sadece birkaç saat daha bu sýcak yorganýn altýnda kalabilseydim...");
                     Destroy(this);
                 }
             }

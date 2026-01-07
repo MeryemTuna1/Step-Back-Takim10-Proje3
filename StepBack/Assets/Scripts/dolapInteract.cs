@@ -11,6 +11,6 @@ public class dolapInteract : MonoBehaviour
         if (done) return;
 
         done = true;
-        KarakterIcSesManager.Instance.ShowText("Hazýrým. Aþaðý inmeliyim.");
+        KarakterIcSesManager.Instance.ShowText("Bu gömlek... Boðazýmý þimdiden sýkmaya baþladý.");
     }
 }

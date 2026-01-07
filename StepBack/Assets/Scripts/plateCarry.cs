@@ -28,7 +28,7 @@ public class plateCarry : MonoBehaviour
             if (carriedPlate != null && currentDropZone != null)
             {
                 DropPlate();
-                KarakterIcSesManager.Instance.ShowText("Artýk gitmeliyim");
+                KarakterIcSesManager.Instance.ShowText("Burada her þey yerli yerinde. Keþke günün geri kalaný da bu tabaklar kadar düzenli olsa.");
             }
         }
     }
