@@ -12,19 +12,19 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private Transform camYaw;
 
+    public Animator animator;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
-
-        //  KAMERA DEÐÝL, YAW ROOT
         camYaw = CameraManager.Instance.cameraYawRoot;
     }
+
     void Update()
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        //  SADECE Y ROTASYONU KULLAN
         Vector3 forward = camYaw.forward;
         Vector3 right = camYaw.right;
 
@@ -33,7 +33,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 dir = forward * v + right * h;
 
-        if (dir.magnitude > 0.01f)
+        // ANÝMASYON KONTROLÜ
+        bool isWalking = dir.magnitude > 0.01f;
+        animator.SetBool("isWalk", isWalking);
+
+        if (isWalking)
         {
             controller.Move(dir.normalized * moveSpeed * Time.deltaTime);
 
@@ -51,7 +55,4 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
-    
-
-   
 }
