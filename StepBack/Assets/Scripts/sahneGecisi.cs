@@ -10,5 +10,6 @@ public class sahneGeçişi : MonoBehaviour
     private void OnMouseDown()
     {
         SceneManager.LoadScene(sceneName);
+        CameraManager.Instance.SwitchToThirdPerson();
     }
 }

@@ -10,7 +10,7 @@ public class mesaj : MonoBehaviour
         if (other.gameObject.tag=="Player")
         {
             KarakterIcSesManager.Instance.ShowText(mesajT);
-            CameraManager.Instance.SwitchToTopDown();
+            //CameraManager.Instance.SwitchToTopDown();
         }
     }
 }
