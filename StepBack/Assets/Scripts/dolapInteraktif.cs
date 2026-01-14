@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class dolapInteraktif : MonoBehaviour
 {
+
     [Header("Player Setup")]
     public GameObject player;               // Player GameObject
     public Animator playerAnimator;         // Animator
@@ -22,8 +23,16 @@ public class dolapInteraktif : MonoBehaviour
 
     private bool changed = false;           // Kýyafet deðiþti mi
 
+
+    [Header("Avatars")]
+    public Avatar pijamaAvatar;
+    public Avatar workAvatar;
+
+  
+
     void Start()
     {
+
         // Baþlangýçta orijinal meshler aktif, kýyafet kapalý
         if (originalMeshRoot != null)
             originalMeshRoot.SetActive(true);
@@ -33,10 +42,16 @@ public class dolapInteraktif : MonoBehaviour
 
         if (workPrefab != null)
             workPrefab.SetActive(false);
+
+        // Baþlangýç avatarý
+        if (playerAnimator != null && pijamaAvatar != null)
+            playerAnimator.avatar = pijamaAvatar;
     }
 
     void OnMouseDown()
     {
+
+
         if (changed) return;
         changed = true;
 
@@ -51,12 +66,26 @@ public class dolapInteraktif : MonoBehaviour
         if (workPrefab != null)
             workPrefab.SetActive(true);
 
-        // Animasyonu tetikle
-        if (playerAnimator != null)
-            playerAnimator.SetTrigger(changeClothesTrigger);
+        // Animatörü deðiþtir
+        PlayerMovement pm = player.GetComponent<PlayerMovement>();
+        if (pm != null)
+            pm.SwitchToWorkAnimator();
 
         // Ýç sesi çal
         if (innerVoiceClip != null && KarakterIcSesManager.Instance != null)
             KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, innerVoiceTime);
+
+
+        if (playerAnimator != null && workAvatar != null)
+        {
+            playerAnimator.avatar = workAvatar;
+            playerAnimator.Rebind();   //  ÇOK ÖNEMLÝ
+            playerAnimator.Update(0f);
+        }
     }
+
+
+ 
+
+   
 }
