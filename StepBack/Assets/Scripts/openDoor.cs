@@ -4,35 +4,39 @@ using UnityEngine;
 
 public class openDoor : MonoBehaviour
 {
-    [Header("Door Sounds")]
+    public Animator anim;
     public AudioClip openDoorClip;
     public AudioClip closeDoorClip;
 
-    private bool isOpen = false;
+    private bool isUsed = false;
 
     void OnMouseDown()
     {
-        if (isOpen) return;
+        if (isUsed) return;
+        isUsed = true;
 
-        isOpen = true;
-        StartCoroutine(OpenCloseDoor());
+        StartCoroutine(DoorRoutine());
     }
 
-    IEnumerator OpenCloseDoor()
+    IEnumerator DoorRoutine()
     {
-        //  Kapý açýlma sesi
+        //  Idle'a DÖNDÜKTEN SONRA objeyi kapat
+        gameObject.SetActive(false);
+
+        // Kapý açýlýyor
+        anim.SetTrigger("Open");
         SFXAudioManager.Instance.PlaySFX(openDoorClip, 1f);
 
-        // (Ýstersen burada animasyon / SetActive(false) yaparsýn)
-        this.gameObject.SetActive(false);
+        // Open anim süresi (clip süresi kadar)
+        yield return new WaitForSeconds(1.5f);
 
-        //  2 saniye bekle
-        yield return new WaitForSeconds(2f);
-
-        //  Kapý kapanma sesi
+        // Kapý kapanýyor
+        anim.SetTrigger("Close");
         SFXAudioManager.Instance.PlaySFX(closeDoorClip, 1f);
 
-        // (Ýstersen kapýyý geri açarsýn)
-        // this.gameObject.SetActive(true);
+        // Close anim süresi
+        yield return new WaitForSeconds(1.5f);
+
+      
     }
 }

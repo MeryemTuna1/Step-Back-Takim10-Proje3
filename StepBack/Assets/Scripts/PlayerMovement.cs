@@ -15,11 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
 
-    public RuntimeAnimatorController workAnimatorController; // Ýþ kýyafeti Animator
+   // public RuntimeAnimatorController workAnimatorController; // Ýþ kýyafeti Animator
 
-    private bool isWorkAnimator = false; // Animator deðiþti mi?
+   // private bool isWorkAnimator = false; // Animator deðiþti mi?
 
-    public void SwitchToWorkAnimator()
+   /* public void SwitchToWorkAnimator()
     {
         if (isWorkAnimator) return; // bir kez deðiþtir
         if (animator != null && workAnimatorController != null)
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isWalkIs",false); // Ýþ kýyafeti idle ile baþlat
             isWorkAnimator = true;
         }
-    }
+    }*/
 
     void Start()
     {
@@ -71,13 +71,6 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (isWorkAnimator)
-        {
-            bool isWalkings = dir.magnitude > 0.01f;
-            animator.SetBool("isWalkIs", isWalkings);
-
-            
-        }
 
     }
 }

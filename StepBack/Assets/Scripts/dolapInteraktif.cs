@@ -1,10 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class dolapInteraktif : MonoBehaviour
 {
+    [Header("Inner Voice")]
+    public AudioClip innerVoiceClip;
+    public float innerVoiceTime = 10f;
 
+    void OnMouseDown()
+    {
+          CameraManager.Instance.SwitchToThirdPerson();
+
+        // Ýç sesi çal
+        if (innerVoiceClip != null && KarakterIcSesManager.Instance != null)
+            KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, innerVoiceTime);
+    }
+
+
+    /*
     [Header("Player Setup")]
     public GameObject player;               // Player GameObject
     public Animator playerAnimator;         // Animator
@@ -78,14 +93,24 @@ public class dolapInteraktif : MonoBehaviour
 
         if (playerAnimator != null && workAvatar != null)
         {
+            Transform root = playerAnimator.transform;
+
+            Vector3 worldPos = root.position;
+            Quaternion worldRot = root.rotation;
+
             playerAnimator.avatar = workAvatar;
-            playerAnimator.Rebind();   //  ÇOK ÖNEMLÝ
+            playerAnimator.Rebind();
             playerAnimator.Update(0f);
+
+            //  POZÝSYONU GERÝ KOY
+            root.position = worldPos;
+            root.rotation = worldRot;
         }
     }
 
+    */
 
- 
 
-   
+
+
 }

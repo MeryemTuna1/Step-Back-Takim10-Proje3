@@ -23,7 +23,7 @@ public class alarmInteract : MonoBehaviour
                 {
                     manager.StopAlarm();
                   
-                    CameraManager.Instance.SwitchToThirdPerson();
+                    CameraManager.Instance.SwitchToFirstPerson();
                     KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip,5f);
                     Destroy(this);
                 }

@@ -35,6 +35,6 @@ public class childFocus : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        CameraManager.Instance.SwitchToThirdPerson();
+        CameraManager.Instance.SwitchToFirstPerson();
     }
 }
