@@ -5,15 +5,13 @@ using UnityEngine;
 public class TableRejection : MonoBehaviour
 {
     //yemekhane arkadaþlarý
-
+    public AudioClip innerVoiceClip;
     void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
 
-        KarakterIcSesManager.Instance.ShowText(
-            "Beni Ýstemiyorlar yine"
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
-        // Sandalyeler kapanabilir (opsiyonel)
+        
     }
 }

@@ -6,7 +6,8 @@ public class yakaKarti : MonoBehaviour
 {
     public GameObject badgeOnNeck;
     bool taken = false;
-    public string text;
+    
+    public AudioClip innerVoiceClip;
     void OnMouseDown()
     {
         if (taken) return;
@@ -15,6 +16,6 @@ public class yakaKarti : MonoBehaviour
         gameObject.SetActive(false);      // dolaptaki kart kaybolur
         badgeOnNeck.SetActive(true);       // boyundaki kart görünür
 
-        KarakterIcSesManager.Instance.ShowText(text);
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
     }
 }

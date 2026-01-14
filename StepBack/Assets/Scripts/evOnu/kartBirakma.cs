@@ -7,7 +7,9 @@ public class kartBirakma : MonoBehaviour
     public GameObject badgeOnNeck;
     bool taken = false;
     public string text;
-  
+
+    public AudioClip innerVoiceClip;
+
     void OnMouseDown()
     {
         if (taken) return;
@@ -16,7 +18,7 @@ public class kartBirakma : MonoBehaviour
         badgeOnNeck.SetActive(false);      // dolaptaki kart kaybolur
         gameObject.SetActive(true);       // boyundaki kart görünür
 
-        KarakterIcSesManager.Instance.ShowText(text);
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
         bitisManager.Instance.FadeToBlack();
     }

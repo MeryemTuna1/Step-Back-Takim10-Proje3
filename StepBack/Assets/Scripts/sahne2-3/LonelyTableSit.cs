@@ -13,6 +13,8 @@ public class LonelyTableSit : MonoBehaviour
     public GameObject invitationObject;
     bool used = false;
 
+    public AudioClip innerVoiceClip, innerVoiceClip2;
+
     private void Start()
     {
         invitationObject.SetActive(false);
@@ -31,9 +33,7 @@ public class LonelyTableSit : MonoBehaviour
         // Kamera TopDown
         CameraManager.Instance.SwitchToTopDown();
 
-        KarakterIcSesManager.Instance.ShowText(
-            "Burada oturabilirim."
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
         used = true;
 
@@ -48,9 +48,7 @@ public class LonelyTableSit : MonoBehaviour
         CameraManager.Instance.SwitchToThirdPerson();
 
         // Ýç ses
-        KarakterIcSesManager.Instance.ShowText(
-            "Doymadým."
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip2);
 
         invitationObject.SetActive(true);
 

@@ -4,23 +4,53 @@ using UnityEngine;
 
 public class wakeUpManager : MonoBehaviour
 {
+    [Header("UI")]
     public CanvasGroup blackScreen;
-    public AudioSource alarmSource;
+
+    [Header("Audio Clips")]
+    public AudioClip alarmClip;
+   
+
+   
+
+    private AudioSource alarmSource;
+    private bool alarmStopped = false;
 
     IEnumerator Start()
     {
-        blackScreen.alpha = 1;
-        yield return new WaitForSeconds(3f);
+        // Baþlangýç
+        blackScreen.alpha = 1f;
 
-       // alarmSource.Play();
+        // Alarm baþlasýn
+        StartAlarm();
 
+        yield return new WaitForSeconds(2f);
+
+        // Siyah ekran açýlma
         for (float a = 1; a >= 0; a -= Time.deltaTime)
         {
             blackScreen.alpha = a;
             yield return null;
         }
+    }
 
-        KarakterIcSesManager.Instance.ShowText(
-            "Yine erken bir sabah...");
+    //  Alarmý baþlat
+    void StartAlarm()
+    {
+        alarmSource = SFXAudioManager.Instance.PlayLoopSFX(alarmClip);
+    }
+
+    //  BUTONA BAÐLANACAK FONKSÝYON
+    public void StopAlarm()
+    {
+        if (alarmStopped) return;
+
+        alarmStopped = true;
+
+        // Alarmý durdur
+        SFXAudioManager.Instance.StopLoopSFX(alarmSource);
+
+        // Ýç ses (yazý + ses)
+       
     }
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class alarmInteract : MonoBehaviour
 {
-   // public AudioSource alarmSource;
-
+    // public AudioSource alarmSource;
+    public AudioClip innerVoiceClip;
+    public wakeUpManager manager;
     void Update()
     {
         if (!CameraManager.Instance.IsFirstPerson()) return;
@@ -20,9 +21,10 @@ public class alarmInteract : MonoBehaviour
             {
                 if (hit.transform == transform)
                 {
-                   // alarmSource.Stop();
+                    manager.StopAlarm();
+                  
                     CameraManager.Instance.SwitchToThirdPerson();
-                    KarakterIcSesManager.Instance.ShowText("Yine mi? Sadece birkaç saat daha bu sýcak yorganýn altýnda kalabilseydim...");
+                    KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip,5f);
                     Destroy(this);
                 }
             }

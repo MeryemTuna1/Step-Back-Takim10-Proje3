@@ -9,6 +9,7 @@ public class bitisManager : MonoBehaviour
     public Image fadeImage;
     public float fadeDuration = 2f;
 
+    public AudioClip innerVoiceClip;
     void Awake()
     {
         Instance = this;
@@ -37,6 +38,6 @@ public class bitisManager : MonoBehaviour
         c.a = 1f;
         fadeImage.color = c;
 
-        KarakterIcSesManager.Instance.ShowText("Step Back, bir karakterin kontrolünü deðil, kontrolün bir karakteri nasýl ele geçirdiðini oynatýr.");
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
     }
 }

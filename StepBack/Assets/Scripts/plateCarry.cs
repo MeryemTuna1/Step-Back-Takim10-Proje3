@@ -10,6 +10,8 @@ public class plateCarry : MonoBehaviour
     GameObject plateInRange;        // yakýndaki tabak
     dropZone currentDropZone;  // içinde bulunulan tezgâh alaný
 
+    public AudioClip innerVoiceClip;
+
     void Update()
     {
         // TABAK ALMA
@@ -18,7 +20,7 @@ public class plateCarry : MonoBehaviour
             if (carriedPlate == null && plateInRange != null)
             {
                 PickPlate();
-                KarakterIcSesManager.Instance.ShowText("Mutfaða býrakmalýyým");
+                
             }
         }
 
@@ -28,7 +30,7 @@ public class plateCarry : MonoBehaviour
             if (carriedPlate != null && currentDropZone != null)
             {
                 DropPlate();
-                KarakterIcSesManager.Instance.ShowText("Burada her þey yerli yerinde. Keþke günün geri kalaný da bu tabaklar kadar düzenli olsa.");
+                KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip,10f);
             }
         }
     }
@@ -67,7 +69,7 @@ public class plateCarry : MonoBehaviour
         if (other.TryGetComponent(out plateZone pickZone))
         {
             plateInRange = pickZone.plate;
-            KarakterIcSesManager.Instance.ShowText("Bunlar burda durmamalý");
+
         }
 
         // Tezgâh alanýna girince

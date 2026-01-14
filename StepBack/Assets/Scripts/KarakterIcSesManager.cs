@@ -6,25 +6,57 @@ using UnityEngine;
 public class KarakterIcSesManager : MonoBehaviour
 {
     public static KarakterIcSesManager Instance;
-    public TextMeshProUGUI text;
+
+    [Header("UI")]
+   // public TextMeshProUGUI text;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
-        text.alpha = 0;
+        DontDestroyOnLoad(gameObject);
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
+       //text.alpha = 0;
     }
 
-    public void ShowText(string msg, float time = 4f)
+    /// <summary>
+    /// Ýç ses yazýsý + ses dosyasýný birlikte oynatýr
+    /// </summary>
+    public void PlayInnerVoice( AudioClip clip, float time = 10f)
     {
         StopAllCoroutines();
-        StartCoroutine(Show(msg, time));
+        StartCoroutine(Play( clip, time));
     }
 
-    IEnumerator Show(string msg, float time)
+    IEnumerator Play( AudioClip clip, float time)
     {
-        text.text = msg;
-        text.alpha = 1;
+        // Yazý
+      //  text.text = msg;
+      //  text.alpha = 1;
+
+        // Ses
+        if (clip != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+
         yield return new WaitForSeconds(time);
-        text.alpha = 0;
+
+        // Kapat
+       // text.alpha = 0;
+        audioSource.Stop();
     }
 }

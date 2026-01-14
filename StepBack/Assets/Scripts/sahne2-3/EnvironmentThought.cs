@@ -6,13 +6,13 @@ public class EnvironmentThought : MonoBehaviour
 {
     
     bool used = false;
-
+    public AudioClip innerVoiceClip;
     void OnTriggerEnter(Collider other)
     {
         if (used) return;
         if (!other.CompareTag("Player")) return;
 
         used = true;
-        KarakterIcSesManager.Instance.ShowText("etrafý izleyim");
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
     }
 }

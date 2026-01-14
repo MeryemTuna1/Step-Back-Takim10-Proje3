@@ -5,7 +5,7 @@ using UnityEngine;
 public class FoodToTray : MonoBehaviour
 {
     bool used = false;
-
+    public AudioClip innerVoiceClip;
     void OnMouseDown()
     {
         if (used) return;
@@ -17,9 +17,7 @@ public class FoodToTray : MonoBehaviour
 
         used = true;
 
-        KarakterIcSesManager.Instance.ShowText(
-            "Yemek az olabilir… hemen çýkarým."
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
         CameraManager.Instance.SwitchToThirdPerson();
     }

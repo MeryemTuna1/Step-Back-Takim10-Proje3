@@ -5,7 +5,7 @@ using UnityEngine;
 public class desk : MonoBehaviour
 {
     bool used = false;
-
+    public AudioClip innerVoiceClip;
     void OnTriggerEnter(Collider other)
     {
         if (used) return;
@@ -17,9 +17,7 @@ public class desk : MonoBehaviour
         CameraManager.Instance.SwitchToFirstPerson();
 
         // Ýç ses
-        KarakterIcSesManager.Instance.ShowText(
-            "Keþke görünmez olsaydým..."
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
         // Masada oturma hissi için hareketi kilitlemek istersen:
         // other.GetComponent<PlayerMovement>().enabled = false;

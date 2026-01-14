@@ -9,6 +9,8 @@ public class CoworkerGroupTrigger : MonoBehaviour
 
     bool used = false;
 
+    public AudioClip innerVoiceClip;
+
     void OnTriggerEnter(Collider other)
     {
         if (used) return;
@@ -17,12 +19,10 @@ public class CoworkerGroupTrigger : MonoBehaviour
         used = true;
 
         // Fýsýltýyý kes
-       // AudioManager.Instance.Play("WhisperStop");
+        // AudioManager.Instance.Play("WhisperStop");
 
         // Ýç ses
-        KarakterIcSesManager.Instance.ShowText(
-            "Merhaba … Gene ayný þey"
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
         // Küçülme artar
         stressController.transform.localScale -= Vector3.one * 0.05f;

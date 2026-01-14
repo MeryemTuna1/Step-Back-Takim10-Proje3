@@ -13,6 +13,7 @@ public class InvitationInteract : MonoBehaviour
 
     bool used = false;
 
+    public AudioClip innerVoiceClip, innerVoiceClip1;
     void Start()
     {
         startPos = transform.position;
@@ -39,9 +40,7 @@ public class InvitationInteract : MonoBehaviour
         // Kamera davetiyeye baksýn
         CameraManager.Instance.LookAtTarget(transform);
 
-        KarakterIcSesManager.Instance.ShowText(
-            "Son anda çaðýrmýþlar..."
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
         yield return new WaitForSeconds(inspectDuration);
 
@@ -52,9 +51,7 @@ public class InvitationInteract : MonoBehaviour
 
         CameraManager.Instance.StopLookAt();
 
-        KarakterIcSesManager.Instance.ShowText(
-            "Yine bensiz gittiler."
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip1);
 
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("EvOnu");

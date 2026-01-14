@@ -11,7 +11,7 @@ public class OfficeMonsterSequence : MonoBehaviour
 
     public GameObject documentPrefab;
     public Transform documentSpawnPoint;
-
+    public AudioClip innerVoiceClip1, innerVoiceClip2;
     public void StartSequence()
     {
         // Oyuncu küçülmeye baþlar
@@ -37,9 +37,7 @@ public class OfficeMonsterSequence : MonoBehaviour
         // Evrak konur
         SpawnDocument();
 
-        KarakterIcSesManager.Instance.ShowText(
-            "Bunlar benim deðil..."
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip1);
 
         yield return new WaitForSeconds(1.2f);
 
@@ -85,8 +83,6 @@ public class OfficeMonsterSequence : MonoBehaviour
 
     void SecondThought()
     {
-        KarakterIcSesManager.Instance.ShowText(
-            "Ne kadar yaparsam yapayým… eksik kalýyor."
-        );
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip2);
     }
 }

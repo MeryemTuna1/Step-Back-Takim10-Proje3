@@ -6,7 +6,7 @@ public class officeIcTrigger : MonoBehaviour
 {
     public float shrinkSpeed = 0.3f;
     public float targetScale = 0.85f;
-
+    public AudioClip innerVoiceClip;
     bool shrinking = false;
 
     void Update()
@@ -25,9 +25,7 @@ public class officeIcTrigger : MonoBehaviour
         {
             shrinking = true;
 
-            KarakterIcSesManager.Instance.ShowText(
-                "Bakmamaya çalýþ… gözlerini üstümde hissediyorum."
-            );
+            KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
         }
     }
 }

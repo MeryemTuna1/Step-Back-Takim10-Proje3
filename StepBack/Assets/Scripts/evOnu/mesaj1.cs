@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class mesaj1 : MonoBehaviour
 {
-    public string mesajTx;
+    
+    public AudioClip innerVoiceClip;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            KarakterIcSesManager.Instance.ShowText(mesajTx);
+            KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
             CameraManager.Instance.SwitchToFirstPerson();
         }
     }

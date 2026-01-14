@@ -9,6 +9,7 @@ public class TrayCarrySystem : MonoBehaviour
 
     public GameObject currentTray;
 
+    public AudioClip innerVoiceClip;
     public void TakeTray(GameObject tray)
     {
         currentTray = tray;
@@ -17,7 +18,7 @@ public class TrayCarrySystem : MonoBehaviour
         tray.transform.localPosition = Vector3.zero;
         tray.transform.localRotation = Quaternion.identity;
 
-        KarakterIcSesManager.Instance.ShowText("Olsun… az da olsa yiyebilirim.");
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
     }
 
     public void PutFoodOnTray(GameObject food)

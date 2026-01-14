@@ -6,8 +6,8 @@ public class officeTrigger : MonoBehaviour
 {
     public GameObject officeDistorted;
     public GameObject officeNormal;
-
-   // public AudioSource hornSound;
+    public AudioClip innerVoiceClip;
+    // public AudioSource hornSound;
 
     public float shakeDuration = 1.2f;
     public float shakePower = 0.15f;
@@ -54,7 +54,7 @@ public class officeTrigger : MonoBehaviour
             fpsController.StartShake(1.2f, 0.15f);
         }
 
-        KarakterIcSesManager.Instance.ShowText("Bu ne");
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
         
 
