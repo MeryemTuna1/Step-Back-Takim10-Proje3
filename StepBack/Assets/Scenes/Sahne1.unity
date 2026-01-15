@@ -1070,13 +1070,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534030826}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 1.25, y: 1.73, z: -0.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 896567725}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!81 &534030828
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 543450653057212292}
   mouseSensitivity: 3
-  distance: -4
+  distance: 4
 --- !u!1 &919063527
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,37 +2965,6 @@ Transform:
   m_Children:
   - {fileID: 815530397}
   m_Father: {fileID: 1998875590}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1140996701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1140996702}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1140996702
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140996701}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8940003, y: 1.8298233, z: 18.718}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1171155957
 GameObject:
@@ -4078,7 +4047,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carryPoint: {fileID: 1296136198}
+  playerAnimator: {fileID: 0}
   innerVoiceClip: {fileID: 0}
+  tabakAlmaClip: {fileID: 0}
+  tabakBirakmaClip: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1421428537
 GameObject:
   m_ObjectHideFlags: 0
@@ -5200,6 +5173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   innerVoiceClip: {fileID: 8300000, guid: 762ab6bc1fb85364080b649fb8d4b027, type: 3}
   innerVoiceTime: 10
+  dolapOpenClip: {fileID: 8300000, guid: cb19593110b0e7b448b23af89ee9e28d, type: 3}
+  dolapCloseClip: {fileID: 8300000, guid: 315fcd423456d6e4c830d4094c29e2c4, type: 3}
 --- !u!1 &1769070986
 GameObject:
   m_ObjectHideFlags: 0
@@ -5382,6 +5357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   badgeOnNeck: {fileID: 1296118059}
+  animator: {fileID: 5866666021394318846}
   innerVoiceClip: {fileID: 8300000, guid: 1aca2076ab9c700419490030f65982fd, type: 3}
 --- !u!1 &1782861911
 GameObject:
@@ -6635,7 +6611,7 @@ Transform:
   m_GameObject: {fileID: 919132148598670654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.01, y: 0.67, z: 18.68}
+  m_LocalPosition: {x: -5.65, y: 0.67, z: 21.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10217,7 +10193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carryPoint: {fileID: 375096625}
+  playerAnimator: {fileID: 5866666021394318846}
   innerVoiceClip: {fileID: 8300000, guid: e7269fc8428af4d46bc0c6e38747ae00, type: 3}
+  tabakAlmaClip: {fileID: 8300000, guid: 98015b4674b8cfb43a184f7835515846, type: 3}
+  tabakBirakmaClip: {fileID: 8300000, guid: 2253d7ad2a8577e468f3384eedbd3e79, type: 3}
+  audioSource: {fileID: 1647684400}
 --- !u!114 &5866666021394318849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10884,7 +10864,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carryPoint: {fileID: 4291601489962208916}
+  playerAnimator: {fileID: 0}
   innerVoiceClip: {fileID: 8300000, guid: e7269fc8428af4d46bc0c6e38747ae00, type: 3}
+  tabakAlmaClip: {fileID: 0}
+  tabakBirakmaClip: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &6832610438442886950
 GameObject:
   m_ObjectHideFlags: 0
@@ -12266,4 +12250,3 @@ SceneRoots:
   - {fileID: 7915442155561136417}
   - {fileID: 543450652457750089}
   - {fileID: 543450653057212292}
-  - {fileID: 1140996702}

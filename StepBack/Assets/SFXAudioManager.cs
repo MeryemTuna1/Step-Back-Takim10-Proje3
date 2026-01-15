@@ -18,9 +18,6 @@ public class SFXAudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    /// <summary>
-    /// Tek seferlik ses (dolap açma, kapatma, korna vs.)
-    /// </summary>
     public void PlaySFX(AudioClip clip, float volume = 1f)
     {
         if (clip == null) return;

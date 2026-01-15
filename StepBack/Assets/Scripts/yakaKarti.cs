@@ -6,7 +6,7 @@ public class yakaKarti : MonoBehaviour
 {
     public GameObject badgeOnNeck;
     bool taken = false;
-    
+    public Animator animator;
     public AudioClip innerVoiceClip;
     void OnMouseDown()
     {
@@ -17,5 +17,6 @@ public class yakaKarti : MonoBehaviour
         badgeOnNeck.SetActive(true);       // boyundaki kart görünür
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
+        animator.SetTrigger("yaka");
     }
 }

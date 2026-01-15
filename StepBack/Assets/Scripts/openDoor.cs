@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class openDoor : MonoBehaviour
 {
+
+
     public Animator anim;
     public AudioClip openDoorClip;
     public AudioClip closeDoorClip;
@@ -20,7 +22,7 @@ public class openDoor : MonoBehaviour
 
     IEnumerator DoorRoutine()
     {
-        //  Idle'a DÖNDÜKTEN SONRA objeyi kapat
+        // Idle'a DÖNDÜKTEN SONRA objeyi kapat
         gameObject.SetActive(false);
 
         // Kapý açýlýyor
@@ -31,12 +33,12 @@ public class openDoor : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         // Kapý kapanýyor
-        anim.SetTrigger("Close");
+       // anim.SetTrigger("Close");
         SFXAudioManager.Instance.PlaySFX(closeDoorClip, 1f);
 
         // Close anim süresi
         yield return new WaitForSeconds(1.5f);
 
-      
+        
     }
 }

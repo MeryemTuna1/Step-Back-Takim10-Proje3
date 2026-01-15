@@ -5,7 +5,7 @@ using UnityEngine;
 public class desk : MonoBehaviour
 {
     bool used = false;
-    public AudioClip innerVoiceClip;
+    public AudioClip innerVoiceClip, innerVoiceClip1;
     void OnTriggerEnter(Collider other)
     {
         if (used) return;
@@ -24,5 +24,7 @@ public class desk : MonoBehaviour
 
         // Canavar sekansýný baþlat
         FindObjectOfType<OfficeMonsterSequence>().StartSequence();
+
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip1);
     }
 }

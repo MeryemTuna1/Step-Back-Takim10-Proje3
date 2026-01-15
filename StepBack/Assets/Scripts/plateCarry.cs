@@ -5,12 +5,22 @@ using UnityEngine;
 public class plateCarry : MonoBehaviour
 {
     public Transform carryPoint;
+    public Animator playerAnimator;
 
-    GameObject carriedPlate;        // elde tutulan tabak
-    GameObject plateInRange;        // yakýndaki tabak
-    dropZone currentDropZone;  // içinde bulunulan tezgâh alaný
+    GameObject carriedPlate;
+    GameObject plateInRange;
+    dropZone currentDropZone;
 
+    [Header("Inner Voice")]
     public AudioClip innerVoiceClip;
+
+    [Header("Audio Clips")]
+    public AudioClip tabakAlmaClip;
+    public AudioClip tabakBirakmaClip;
+
+    public AudioSource audioSource;   //  EKLENDÝ
+
+    
 
     void Update()
     {
@@ -20,17 +30,16 @@ public class plateCarry : MonoBehaviour
             if (carriedPlate == null && plateInRange != null)
             {
                 PickPlate();
-                
             }
         }
 
-        // TABAK BIRAKMA (SADECE TEZGÂHTA)
+        // TABAK BIRAKMA
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (carriedPlate != null && currentDropZone != null)
             {
                 DropPlate();
-                KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip,10f);
+                KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 10f);
             }
         }
     }
@@ -39,7 +48,6 @@ public class plateCarry : MonoBehaviour
     {
         carriedPlate = plateInRange;
 
-        // Fizik varsa kapat (elde titremesin)
         Rigidbody rb = carriedPlate.GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = true;
 
@@ -48,6 +56,13 @@ public class plateCarry : MonoBehaviour
         carriedPlate.transform.localRotation = Quaternion.identity;
 
         plateInRange = null;
+
+        //  ANÝMASYON
+        playerAnimator.SetBool("isCarrying", true);
+
+        //  TABAK ALMA SESÝ
+        if (tabakAlmaClip != null)
+            audioSource.PlayOneShot(tabakAlmaClip);
     }
 
     void DropPlate()
@@ -59,20 +74,24 @@ public class plateCarry : MonoBehaviour
         Rigidbody rb = carriedPlate.GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = false;
 
+        //  ANÝMASYON
+        playerAnimator.SetBool("isCarrying", false);
+
+        //  TABAK BIRAKMA SESÝ
+        if (tabakBirakmaClip != null)
+            audioSource.PlayOneShot(tabakBirakmaClip);
+
         carriedPlate = null;
         currentDropZone = null;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Tabak alma alanýna girince
         if (other.TryGetComponent(out plateZone pickZone))
         {
             plateInRange = pickZone.plate;
-
         }
 
-        // Tezgâh alanýna girince
         if (other.TryGetComponent(out dropZone dropZone))
         {
             currentDropZone = dropZone;
@@ -85,7 +104,6 @@ public class plateCarry : MonoBehaviour
         {
             if (plateInRange == pickZone.plate)
                 plateInRange = null;
-                
         }
 
         if (other.TryGetComponent(out dropZone dropZone))
@@ -94,5 +112,4 @@ public class plateCarry : MonoBehaviour
                 currentDropZone = null;
         }
     }
-
 }
