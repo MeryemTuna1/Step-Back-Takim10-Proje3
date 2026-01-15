@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class bitisManager : MonoBehaviour
@@ -24,6 +25,8 @@ public class bitisManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 10f);
+
         float t = 0f;
         Color c = fadeImage.color;
 
@@ -38,6 +41,9 @@ public class bitisManager : MonoBehaviour
         c.a = 1f;
         fadeImage.color = c;
 
-        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
+
+        yield return new WaitForSeconds(5f);
+
+        SceneManager.LoadScene("mainMenu");
     }
 }

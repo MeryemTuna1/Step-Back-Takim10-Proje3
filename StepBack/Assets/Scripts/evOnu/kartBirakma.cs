@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class kartBirakma : MonoBehaviour
 {
-    public GameObject badgeOnNeck;
+    public GameObject badgeOnNeck, badgeOnNeck1;
     bool taken = false;
-    public string text;
+    
 
     public AudioClip innerVoiceClip;
 
@@ -16,7 +16,7 @@ public class kartBirakma : MonoBehaviour
         taken = true;
 
         badgeOnNeck.SetActive(false);      // dolaptaki kart kaybolur
-        gameObject.SetActive(true);       // boyundaki kart görünür
+        badgeOnNeck1.SetActive(true);       // boyundaki kart görünür
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
