@@ -7,7 +7,7 @@ public class childFocus : MonoBehaviour
     public Transform focusPoint;
     bool done = false;
 
-    public AudioClip innerVoiceClip;
+    //public AudioClip innerVoiceClip;
     void OnMouseDown()
     {
         if (done) return;
@@ -31,10 +31,10 @@ public class childFocus : MonoBehaviour
             yield return null;
         }
 
-        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
+        //KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
         yield return new WaitForSeconds(1.5f);
 
-        CameraManager.Instance.SwitchToFirstPerson();
+        CameraManager.Instance.SwitchToThirdPerson();
     }
 }

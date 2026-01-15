@@ -36,6 +36,8 @@ public class openDoor : MonoBehaviour
        // anim.SetTrigger("Close");
         SFXAudioManager.Instance.PlaySFX(closeDoorClip, 1f);
 
+        gameObject.SetActive(true);
+
         // Close anim süresi
         yield return new WaitForSeconds(1.5f);
 

@@ -8,7 +8,7 @@ public class OfficeMonsterSequence : MonoBehaviour
     public monsterAI[] coworkers;
 
     public stressKuculmePlayer stressPlayer;
-    public AudioClip innerVoiceClip1;
+    public AudioClip innerVoiceClip1, innerVoiceClip;
 
     public void StartSequence()
     {
@@ -41,5 +41,8 @@ public class OfficeMonsterSequence : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip1);
+
+        yield return new WaitForSeconds(2f);
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
     }
 }

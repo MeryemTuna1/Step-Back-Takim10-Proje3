@@ -9,7 +9,9 @@ public class ClockFocusSequence : MonoBehaviour
 
     bool used = false;
 
-    public AudioClip innerVoiceClip, innerVoiceClip2;
+    public AudioClip innerVoiceClip;
+
+    public Animator animator;
     void OnMouseDown()
     {
         if (used) return;
@@ -44,8 +46,10 @@ public class ClockFocusSequence : MonoBehaviour
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
         yield return new WaitForSeconds(1.2f);
-        KarakterIcSesManager.Instance.PlayInnerVoice( innerVoiceClip2);
-        yield return new WaitForSeconds(0.5f);
+       // KarakterIcSesManager.Instance.PlayInnerVoice( innerVoiceClip2);
+       // yield return new WaitForSeconds(0.5f);
         CameraManager.Instance.SwitchToThirdPerson();
+
+        animator.SetTrigger("standUp");
     }
 }

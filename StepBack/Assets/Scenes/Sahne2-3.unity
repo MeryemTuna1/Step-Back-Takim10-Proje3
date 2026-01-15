@@ -1750,6 +1750,11 @@ MonoBehaviour:
   firstPersonCam: {fileID: 1025959434}
   topDownCam: {fileID: 648252086}
   cameraYawRoot: {fileID: 1316759329}
+  playerTarget: {fileID: 0}
+  thirdPersonDistance: 4
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &334750544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2948,6 +2953,11 @@ MonoBehaviour:
   firstPersonCam: {fileID: 814552869}
   topDownCam: {fileID: 979224708}
   cameraYawRoot: {fileID: 1932703499}
+  playerTarget: {fileID: 0}
+  thirdPersonDistance: 4
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &539687362
 Transform:
   m_ObjectHideFlags: 0
@@ -6543,7 +6553,7 @@ MonoBehaviour:
   - {fileID: 5648063377478662407}
   stressPlayer: {fileID: 1410878008}
   innerVoiceClip1: {fileID: 8300000, guid: c8e2ffd4c06a60c49bec137ba9ef9aa9, type: 3}
-  innerVoiceClip2: {fileID: 8300000, guid: b06d1a88c3290d148aa65d2de533d810, type: 3}
+  innerVoiceClip: {fileID: 8300000, guid: 17e60f68fc7ec5846aeb80c68f318f4e, type: 3}
 --- !u!1 &1084884308
 GameObject:
   m_ObjectHideFlags: 0
@@ -7755,6 +7765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5279699188019558583}
   agent: {fileID: 1317231138}
+  innerVoiceClip2: {fileID: 0}
   documentPrefab: {fileID: 0}
   documentSpawnPoint: {fileID: 0}
 --- !u!1 &1321479519
@@ -10015,6 +10026,11 @@ MonoBehaviour:
   firstPersonCam: {fileID: 1862867225}
   topDownCam: {fileID: 1313236222}
   cameraYawRoot: {fileID: 1816391217}
+  playerTarget: {fileID: 0}
+  thirdPersonDistance: 4
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &1714301827
 Transform:
   m_ObjectHideFlags: 0
@@ -10089,7 +10105,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.77
+  m_VoxelSize: 0.50666666
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 61529ceb6a1f2f347a22b18a852fbd20, type: 2}
   m_BuildHeightMesh: 0
@@ -11439,7 +11455,7 @@ MonoBehaviour:
   cameraFocusPoint: {fileID: 1552691677}
   moveTime: 1.5
   innerVoiceClip: {fileID: 8300000, guid: 4bcda7737d74be6419fbebe89f5de49c, type: 3}
-  innerVoiceClip2: {fileID: 8300000, guid: 17e60f68fc7ec5846aeb80c68f318f4e, type: 3}
+  animator: {fileID: 662665260}
 --- !u!1 &1911652411
 GameObject:
   m_ObjectHideFlags: 0
@@ -18331,6 +18347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5279699188019558583}
   agent: {fileID: 5279699188019558584}
+  innerVoiceClip2: {fileID: 8300000, guid: e0dfaea8f6834974581a8f5d73353bd7, type: 3}
   documentPrefab: {fileID: 4413016534143718761, guid: 598d2cb6b6947c94eb2ea99572068bbf, type: 3}
   documentSpawnPoint: {fileID: 1729375416}
 --- !u!1 &5291213093672932709
@@ -18766,6 +18783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5648063377478662409}
   agent: {fileID: 5648063377478662408}
+  innerVoiceClip2: {fileID: 8300000, guid: e0dfaea8f6834974581a8f5d73353bd7, type: 3}
   documentPrefab: {fileID: 4413016534143718761, guid: 65f8939d8ca34ea429d32d2f7f803179, type: 3}
   documentSpawnPoint: {fileID: 757490468}
 --- !u!195 &5648063377478662408
@@ -19026,6 +19044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5866666021227691064}
   agent: {fileID: 5866666021227691066}
+  innerVoiceClip2: {fileID: 8300000, guid: e0dfaea8f6834974581a8f5d73353bd7, type: 3}
   documentPrefab: {fileID: 4413016534143718761, guid: 230305fa7caf2f94787fc3722f2b630e, type: 3}
   documentSpawnPoint: {fileID: 1545402088}
 --- !u!195 &5866666021227691066
@@ -22539,6 +22558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 3086611420894595171}
   agent: {fileID: 8950328593446851098}
+  innerVoiceClip2: {fileID: 8300000, guid: e0dfaea8f6834974581a8f5d73353bd7, type: 3}
   documentPrefab: {fileID: 4413016534143718761, guid: 9575fd8ce1ba3d34d8de692169e8c646, type: 3}
   documentSpawnPoint: {fileID: 334750545}
 --- !u!1 &8953972740774223661

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
+
     public Transform target;
     public float mouseSensitivity = 3f;
     public float distance = 4f;
 
     float yaw;
+
 
     void Start()
     {

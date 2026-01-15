@@ -14,6 +14,12 @@ public class CameraManager : MonoBehaviour
 
     Camera activeCam;
 
+    //
+    [Header("Third Person Collision")]
+    public Transform playerTarget;     // player (kamera baktýðý yer)
+    public float thirdPersonDistance = 4f;
+    public LayerMask wallLayer;
+    float initialCamY;
     void Awake()
     {
         if (Instance == null)
@@ -25,6 +31,29 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         SwitchToFirstPerson();
+    }
+
+    void LateUpdate()
+    {
+        if (activeCam == null) return;
+
+        if (looking && lookTarget != null)
+            activeCam.transform.LookAt(lookTarget);
+
+        if (IsThirdPerson() && playerTarget != null)
+        {
+            Vector3 dir = (activeCam.transform.position - playerTarget.position).normalized;
+
+            if (Physics.Raycast(playerTarget.position, dir, out RaycastHit hit, thirdPersonDistance, wallLayer))
+                activeCam.transform.position = hit.point - dir * 0.3f;
+            else
+                activeCam.transform.position = playerTarget.position + dir * thirdPersonDistance;
+        }
+
+        // Y sabitleme (HER ZAMAN EN SON)
+        Vector3 pos = activeCam.transform.position;
+        pos.y = initialCamY;
+        activeCam.transform.position = pos;
     }
 
     public void SwitchToThirdPerson()
@@ -50,6 +79,10 @@ public class CameraManager : MonoBehaviour
 
         cam.gameObject.SetActive(true);
         activeCam = cam;
+
+
+       // Kameranýn PLAY ÖNCESÝ Y DEÐERÝNÝ KAYDET
+        initialCamY = cam.transform.position.y;
     }
 
     //  HATA VEREN FONKSÝYON BURASIYDI
@@ -88,11 +121,11 @@ public class CameraManager : MonoBehaviour
         looking = false;
         lookTarget = null;
     }
-
+/*
     void LateUpdate()
     {
         if (!looking || lookTarget == null || activeCam == null) return;
 
         activeCam.transform.LookAt(lookTarget);
-    }
+    }*/
 }
