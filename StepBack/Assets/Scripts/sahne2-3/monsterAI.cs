@@ -7,7 +7,7 @@ public class monsterAI : MonoBehaviour
 {
     public Animator anim;
     public NavMeshAgent agent;
-
+    public AudioClip innerVoiceClip2;
     public bool Arrived { get; private set; }
 
     [Header("Document")]
@@ -30,7 +30,7 @@ public class monsterAI : MonoBehaviour
         agent.isStopped = false;
         agent.SetDestination(deskPoint.position);
 
-        anim.SetBool("Walk", true);
+        anim.SetBool("WalkC", true);
 
         // Masaya varana kadar bekle
         while (agent.pathPending || agent.remainingDistance > agent.stoppingDistance)
@@ -40,11 +40,13 @@ public class monsterAI : MonoBehaviour
 
         // Geldi
         agent.isStopped = true;
-        anim.SetBool("Walk", false);
+        anim.SetBool("WalkC", false);
 
         // Dosya býrak
-        anim.SetTrigger("DropDocument");
+        anim.SetTrigger("DropDocumentC");
         DropDocument();
+
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip2);
 
         // Anim bitmesini bekle (drop anim süresi)
         yield return new WaitForSeconds(1.2f);

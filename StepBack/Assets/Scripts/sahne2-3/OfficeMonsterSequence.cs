@@ -8,7 +8,7 @@ public class OfficeMonsterSequence : MonoBehaviour
     public monsterAI[] coworkers;
 
     public stressKuculmePlayer stressPlayer;
-    public AudioClip innerVoiceClip1, innerVoiceClip2;
+    public AudioClip innerVoiceClip1;
 
     public void StartSequence()
     {
@@ -36,7 +36,7 @@ public class OfficeMonsterSequence : MonoBehaviour
         }
 
         // Hepsi bittikten sonra
-        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip2);
+        
 
         yield return new WaitForSeconds(1f);
 
