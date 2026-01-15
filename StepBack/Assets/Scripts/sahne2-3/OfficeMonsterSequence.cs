@@ -8,81 +8,38 @@ public class OfficeMonsterSequence : MonoBehaviour
     public monsterAI[] coworkers;
 
     public stressKuculmePlayer stressPlayer;
-
-    public GameObject documentPrefab;
-    public Transform documentSpawnPoint;
     public AudioClip innerVoiceClip1, innerVoiceClip2;
+
     public void StartSequence()
     {
-        // Oyuncu küçülmeye baþlar
-        stressPlayer.StartOfficeStress();
+        if (stressPlayer != null)
+            stressPlayer.StartOfficeStress();
 
-        // NPC’leri masaya gönder
-        foreach (var npc in coworkers)
-        {
-            npc.GoToDesk(deskPoint);
-        }
-
-        StartCoroutine(WaitAndDropDocuments());
+        StartCoroutine(SequenceRoutine());
     }
 
-    IEnumerator WaitAndDropDocuments()
+    IEnumerator SequenceRoutine()
     {
-        // TÜM NPC’LER VARANA KADAR BEKLE
-        while (!AllArrived())
+        // CANAVARLAR SIRAYLA
+        foreach (var npc in coworkers)
         {
-            yield return null;
+            if (npc == null) continue;
+
+            npc.gameObject.SetActive(true);
+
+            yield return StartCoroutine(
+                npc.GoToDeskAndDrop(deskPoint)
+            );
+
+            // Canavarlar arasýnda küçük boþluk (gerilim için)
+            yield return new WaitForSeconds(0.5f);
         }
 
-        // Evrak konur
-        SpawnDocument();
+        // Hepsi bittikten sonra
+        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip2);
+
+        yield return new WaitForSeconds(1f);
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip1);
-
-        yield return new WaitForSeconds(1.2f);
-
-        // Canavarlar yok olur
-        HideMonsters();
-
-        Invoke(nameof(SecondThought), 1f);
-    }
-
-    bool AllArrived()
-    {
-        foreach (var npc in coworkers)
-        {
-            if (!npc.Arrived)
-                return false;
-        }
-        return true;
-    }
-
-    void SpawnDocument()
-    {
-        GameObject doc = Instantiate(
-            documentPrefab,
-            documentSpawnPoint.position,
-            documentSpawnPoint.rotation
-        );
-
-        Rigidbody rb = doc.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = true; // sabit dursun
-        }
-
-       
-    }
-    void HideMonsters()
-    {
-        foreach (var npc in coworkers)
-        {
-            npc.gameObject.SetActive(false);
-        }
-    }
-
-    void SecondThought()
-    {
-        KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip2);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class npcMovement : MonoBehaviour
-{
+{/*
     public Transform player;
     public float rotateSpeed = 5f;
 
@@ -17,6 +17,5 @@ public class npcMovement : MonoBehaviour
             transform.rotation,
             lookRot,
             rotateSpeed * Time.deltaTime
-        );
-    }
+        );*/
 }

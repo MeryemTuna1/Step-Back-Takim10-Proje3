@@ -5,30 +5,69 @@ using UnityEngine.AI;
 
 public class monsterAI : MonoBehaviour
 {
-    NavMeshAgent agent;
+    public Animator anim;
+    public NavMeshAgent agent;
 
     public bool Arrived { get; private set; }
 
+    [Header("Document")]
+    public GameObject documentPrefab;
+    public Transform documentSpawnPoint;
+
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        if (anim == null)
+            anim = GetComponentInChildren<Animator>();
+
+        if (agent == null)
+            agent = GetComponent<NavMeshAgent>();
     }
 
-    public void GoToDesk(Transform deskPoint)
+    public IEnumerator GoToDeskAndDrop(Transform deskPoint)
     {
         Arrived = false;
-        agent.SetDestination(deskPoint.position);
-    }
 
-    void Update()
-    {
-        if (!agent.pathPending &&
-            agent.remainingDistance <= agent.stoppingDistance)
+        agent.isStopped = false;
+        agent.SetDestination(deskPoint.position);
+
+        anim.SetBool("Walk", true);
+
+        // Masaya varana kadar bekle
+        while (agent.pathPending || agent.remainingDistance > agent.stoppingDistance)
         {
-            Arrived = true;
-            
+            yield return null;
         }
 
+        // Geldi
+        agent.isStopped = true;
+        anim.SetBool("Walk", false);
+
+        // Dosya býrak
+        anim.SetTrigger("DropDocument");
+        DropDocument();
+
+        // Anim bitmesini bekle (drop anim süresi)
+        yield return new WaitForSeconds(1.2f);
+
+        // Yok ol
+        gameObject.SetActive(false);
     }
 
+    void DropDocument()
+    {
+        if (documentPrefab == null || documentSpawnPoint == null)
+            return;
+
+        GameObject doc = Instantiate(
+            documentPrefab,
+            documentSpawnPoint.position,
+            documentSpawnPoint.rotation
+        );
+
+        doc.SetActive(true);
+
+        Rigidbody rb = doc.GetComponent<Rigidbody>();
+        if (rb != null)
+            rb.isKinematic = true;
+    }
 }
