@@ -47,7 +47,7 @@ public class esMovement : MonoBehaviour
         if (waveSound != null && audioSource != null)
             audioSource.PlayOneShot(waveSound);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
 
         // GERÝ DÖN
         animator.SetBool("IsWalking", true);
