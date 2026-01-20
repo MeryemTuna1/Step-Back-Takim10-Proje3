@@ -35,7 +35,7 @@ public class CoworkerGroupTrigger : MonoBehaviour
         // NPC masaya bakmasýn
         foreach (Transform npc in coworkers)
         {
-            npc.rotation = Quaternion.Euler(0, 180, 0);
+            npc.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         // Yürü + yok ol

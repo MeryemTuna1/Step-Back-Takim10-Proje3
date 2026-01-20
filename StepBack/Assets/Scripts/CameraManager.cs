@@ -17,7 +17,7 @@ public class CameraManager : MonoBehaviour
     //
     [Header("Third Person Collision")]
     public Transform playerTarget;     // player (kamera baktýðý yer)
-    public float thirdPersonDistance = 4f;
+    public float thirdPersonDistance;
     public LayerMask wallLayer;
     float initialCamY;
     void Awake()

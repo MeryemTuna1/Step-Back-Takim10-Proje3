@@ -28,7 +28,7 @@ public class desk : MonoBehaviour
     IEnumerator DeskSequence()
     {
         // Kamera FPS
-        CameraManager.Instance.SwitchToThirdPerson();
+        CameraManager.Instance.SwitchToFirstPerson();
 
         // OTURMA ANÝMÝ
         playerAnim.SetTrigger("SitDown");

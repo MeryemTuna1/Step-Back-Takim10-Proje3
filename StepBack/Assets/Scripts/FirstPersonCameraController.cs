@@ -5,7 +5,7 @@ using UnityEngine;
 public class FirstPersonCameraController : MonoBehaviour
 {
     public Transform target;
-    public Vector3 offset = new Vector3(0, 1.6f, 0);
+    public Vector3 offset;
     public float sensitivity = 3f;
 
     float yaw;

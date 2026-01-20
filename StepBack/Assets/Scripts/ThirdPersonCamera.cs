@@ -7,7 +7,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public Transform target;
     public float mouseSensitivity = 3f;
-    public float distance = 4f;
+    public float distance;
 
     float yaw;
 
