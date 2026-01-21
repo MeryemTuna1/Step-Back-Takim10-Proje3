@@ -12,9 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Sahne1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/evOnu.unity
-    guid: cd2e0c6fbf229df41845dbfffedea862
+    path: Assets/Scenes/SahneDisaridaYuru.unity
+    guid: 1090933e73a055243a4b828ffa668dae
   - enabled: 1
     path: Assets/Scenes/Sahne2-3 New.unity
     guid: 569c79757144ba145bd30bebca70cb29
+  - enabled: 1
+    path: Assets/Scenes/eveDon.unity
+    guid: f5cbd2780d5802c46ac24ed4c6de891e
+  - enabled: 1
+    path: Assets/Scenes/evOnu.unity
+    guid: cd2e0c6fbf229df41845dbfffedea862
   m_configObjects: {}
