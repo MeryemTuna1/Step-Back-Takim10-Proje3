@@ -23,6 +23,8 @@ public class officeIcTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            CameraManager.Instance.SwitchToThirdPerson();
+
             shrinking = true;
 
             KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);

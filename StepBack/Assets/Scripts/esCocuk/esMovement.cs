@@ -19,18 +19,19 @@ public class esMovement : MonoBehaviour
 
     void Start()
     {
+        animator.applyRootMotion = false;
         StartCoroutine(Routine());
     }
 
     IEnumerator Routine()
     {
-        // BAÞLANGIÇ  OTUR
+        // BAÞLANGIÇ OTUR
         animator.SetBool("IsSitting", true);
         animator.SetBool("IsWalking", false);
 
         yield return new WaitForSeconds(35f);
 
-        // KALK  YÜRÜ
+        // KALK YÜRÜ
         animator.SetBool("IsSitting", false);
         animator.SetBool("IsWalking", true);
 
@@ -40,26 +41,16 @@ public class esMovement : MonoBehaviour
             yield return MoveToPoint(waypoints[i]);
         }
 
-        // DUR  EL SALLA
+        // SON POINTTE DUR
         animator.SetBool("IsWalking", false);
+
+        // EL SALLA
         animator.SetTrigger("Wave");
 
         if (waveSound != null && audioSource != null)
             audioSource.PlayOneShot(waveSound);
 
-        yield return new WaitForSeconds(8f);
 
-        // GERÝ DÖN
-        animator.SetBool("IsWalking", true);
-
-        for (int i = waypoints.Length - 1; i >= 0; i--)
-        {
-            yield return MoveToPoint(waypoints[i]);
-        }
-
-        // OTUR
-        animator.SetBool("IsWalking", false);
-        animator.SetBool("IsSitting", true);
     }
 
     IEnumerator MoveToPoint(Transform target)

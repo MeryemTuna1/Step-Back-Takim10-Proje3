@@ -28,7 +28,7 @@ public class desk : MonoBehaviour
     IEnumerator DeskSequence()
     {
         // Kamera FPS
-        CameraManager.Instance.SwitchToFirstPerson();
+        CameraManager.Instance.SwitchToTopDown();
 
         // OTURMA ANÝMÝ
         playerAnim.SetTrigger("SitDown");
@@ -57,6 +57,7 @@ public class desk : MonoBehaviour
 
         // CANAVAR SEANSI
         FindObjectOfType<OfficeMonsterSequence>().StartSequence();
+        CameraManager.Instance.SwitchToFirstPerson();
     }
 
 

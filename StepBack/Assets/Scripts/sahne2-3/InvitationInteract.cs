@@ -63,7 +63,8 @@ public class InvitationInteract : MonoBehaviour
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip1);
 
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("EvOnu");
+        SceneManager.LoadScene("eveDon");
+        CameraManager.Instance.SwitchToThirdPerson();
     }
 }
 
