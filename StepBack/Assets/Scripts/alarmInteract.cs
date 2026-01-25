@@ -7,6 +7,8 @@ public class alarmInteract : MonoBehaviour
     // public AudioSource alarmSource;
     public AudioClip innerVoiceClip;
     public wakeUpManager manager;
+
+
     void Update()
     {
         if (!CameraManager.Instance.IsFirstPerson()) return;
@@ -22,12 +24,13 @@ public class alarmInteract : MonoBehaviour
                 if (hit.transform == transform)
                 {
                     manager.StopAlarm();
-                  
                     CameraManager.Instance.SwitchToFirstPerson();
-                    KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip,5f);
+                    KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 5f);
+
                     Destroy(this);
                 }
             }
         }
     }
+
 }

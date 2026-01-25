@@ -16,7 +16,7 @@ public class plateCarry : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip tabakAlmaClip;
-    public AudioClip tabakBirakmaClip;
+    public AudioClip tabakBirakmaClip, acelemVar;
 
     public AudioSource audioSource;   //  EKLENDÝ
 
@@ -25,16 +25,18 @@ public class plateCarry : MonoBehaviour
     void Update()
     {
         // TABAK ALMA
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetMouseButton(0))
         {
             if (carriedPlate == null && plateInRange != null)
             {
                 PickPlate();
+                KarakterIcSesManager.Instance.PlayInnerVoice(acelemVar);
+                Debug.Log("acelem var");
             }
         }
 
         // TABAK BIRAKMA
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetMouseButton(1))
         {
             if (carriedPlate != null && currentDropZone != null)
             {
