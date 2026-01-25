@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class alarmInteract : MonoBehaviour
 {
-    // public AudioSource alarmSource;
     public AudioClip innerVoiceClip;
     public wakeUpManager manager;
-
 
     void Update()
     {
@@ -15,20 +13,29 @@ public class alarmInteract : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = CameraManager.Instance
-                .GetActiveCamera()
-                .ScreenPointToRay(Input.mousePosition);
+            Camera cam = CameraManager.Instance.GetActiveCamera();
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            Debug.DrawRay(ray.origin, ray.direction * 5f, Color.red, 2f);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 5f))
             {
+                Debug.Log("Hit: " + hit.transform.name);
+
                 if (hit.transform == transform)
                 {
+                    Debug.Log("ALARM TIKLANDI!");
+
                     manager.StopAlarm();
                     CameraManager.Instance.SwitchToFirstPerson();
                     KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 5f);
 
                     Destroy(this);
                 }
+            }
+            else
+            {
+                Debug.Log("Raycast hiçbir þeye çarpmadý");
             }
         }
     }

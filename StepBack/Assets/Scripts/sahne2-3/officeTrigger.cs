@@ -51,7 +51,7 @@ public class officeTrigger : MonoBehaviour
 
         if (fpsController != null)
         {
-            fpsController.StartShake(1.2f, 0.15f);
+           // fpsController.StartShake(1.2f, 0.15f);
         }
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);

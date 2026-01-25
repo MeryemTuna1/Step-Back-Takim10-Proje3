@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    public Transform target;
-    public float mouseSensitivity = 3f;
-    public float distance;
-
-    float yaw;
-
     [Header("Outline Raycast")]
     public float maxDistance = 5f;
 
@@ -32,22 +26,6 @@ public class ThirdPersonCamera : MonoBehaviour
             }
         }
     }
-
-    void Start()
-    {
-        yaw = transform.eulerAngles.y;
-    }
-
-    void LateUpdate()
-    {
-        if (!CameraManager.Instance.IsThirdPerson()) return;
-
-        yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
-
-        transform.rotation = Quaternion.Euler(0, yaw, 0);
-        transform.position = target.position - transform.forward * distance;
-    }
-
 
 
     /*
