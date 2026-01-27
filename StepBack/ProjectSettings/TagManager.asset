@@ -15,6 +15,7 @@ TagManager:
   - Tray
   - pointt
   - davetiye
+  - Clothes
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Water
   - UI
   - Wall
-  - 
+  - Clothes
   - 
   - 
   - 

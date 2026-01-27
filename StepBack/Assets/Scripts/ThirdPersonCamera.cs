@@ -17,11 +17,23 @@ public class ThirdPersonCamera : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxDistance))
             {
-                Outline clickedOutline = hit.collider.GetComponent<Outline>();
-                if (clickedOutline != null)
+                // En üst parent'ý bul
+                Transform root = hit.collider.transform.root;
+
+                // Root + tüm child'larda Outline ara (inactive dahil)
+                Outline[] outlines = root.GetComponentsInChildren<Outline>(true);
+
+                if (outlines.Length > 0)
                 {
-                    clickedOutline.OutlineWidth = 0f;
-                    clickedOutline.enabled = false;
+                    foreach (Outline o in outlines)
+                    {
+                        o.OutlineWidth = 0f;
+                        o.enabled = false;
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Bu objede Outline bulunamadý: " + root.name);
                 }
             }
         }

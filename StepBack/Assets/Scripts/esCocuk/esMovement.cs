@@ -17,10 +17,22 @@ public class esMovement : MonoBehaviour
     [Header("Audio")]
     public AudioClip waveSound;
 
-    void Start()
+    public plateCarry isOkey;
+
+    private void Start()
     {
         animator.applyRootMotion = false;
-        StartCoroutine(Routine());
+    }
+
+    void Update()
+    {
+      
+
+        if (isOkey.isOk)
+        {
+            StartCoroutine(Routine());
+        }
+       
     }
 
     IEnumerator Routine()
@@ -29,7 +41,7 @@ public class esMovement : MonoBehaviour
         animator.SetBool("IsSitting", true);
         animator.SetBool("IsWalking", false);
 
-        yield return new WaitForSeconds(35f);
+        yield return new WaitForSeconds(1f);
 
         // KALK YÜRÜ
         animator.SetBool("IsSitting", false);

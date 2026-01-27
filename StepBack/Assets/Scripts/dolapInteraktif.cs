@@ -15,7 +15,7 @@ public class dolapInteraktif : MonoBehaviour
     public AudioClip dolapCloseClip;
 
     private bool used = false;
-
+    public bool opern = false;
     void OnMouseDown()
     {
         if (used) return;
@@ -50,6 +50,8 @@ public class dolapInteraktif : MonoBehaviour
             KarakterIcSesManager.Instance.PlayInnerVoice(cocukCagirdi, innerVoiceTime);
 
         Debug.Log("cocuk çaðýrma tamam");
+
+        opern = true;
     }
 
 
