@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    [Header("Outline Raycast")]
     public float maxDistance = 5f;
-
+    public LayerMask interactLayer;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -15,30 +14,35 @@ public class ThirdPersonCamera : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, maxDistance))
+
+            Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.red, 1f);
+
+            if  (Physics.Raycast(ray, out hit, maxDistance, interactLayer))
             {
-                // En üst parent'ý bul
-                Transform root = hit.collider.transform.root;
+                Debug.Log("Raycast hit: " + hit.collider.name);
 
-                // Root + tüm child'larda Outline ara (inactive dahil)
-                Outline[] outlines = root.GetComponentsInChildren<Outline>(true);
+                // Parent + Child her yerde ara (GARANTÝ)
+                Outline[] outlines = hit.collider.GetComponentsInParent<Outline>(true);
 
-                if (outlines.Length > 0)
+                if (outlines.Length == 0)
                 {
-                    foreach (Outline o in outlines)
-                    {
-                        o.OutlineWidth = 0f;
-                        o.enabled = false;
-                    }
+                    outlines = hit.collider.GetComponentsInChildren<Outline>(true);
                 }
-                else
+
+                Debug.Log("Bulunan Outline sayýsý: " + outlines.Length);
+
+                foreach (Outline o in outlines)
                 {
-                    Debug.LogWarning("Bu objede Outline bulunamadý: " + root.name);
+                    Debug.Log("Outline kapatýldý: " + o.gameObject.name);
+                    o.OutlineWidth = 0f;
                 }
+            }
+            else
+            {
+                Debug.Log("Raycast hiçbir þeye çarpmadý!");
             }
         }
     }
-
 
     /*
     public Transform target;

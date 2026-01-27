@@ -14,8 +14,19 @@ public class dolapInteraktif : MonoBehaviour
     public AudioClip dolapOpenClip;
     public AudioClip dolapCloseClip;
 
+    [Header("Dolap Kapak Pivot")]
+    public Transform kapakPivot;
+    public float openAngle = 90f;
+    public float closeAngle = 0f;
+    public float rotateSpeed = 120f;
+
+    private bool kapakAcik = false;
+    private bool kapakHareket = false;
+
     private bool used = false;
     public bool opern = false;
+
+
     void OnMouseDown()
     {
         if (used) return;
@@ -31,12 +42,24 @@ public class dolapInteraktif : MonoBehaviour
         if (dolapOpenClip != null)
             SFXAudioManager.Instance.PlaySFX(dolapOpenClip, 1f);
 
+        // ---- KAPAK AЧ (ROTASYON) ----
+        if (!kapakHareket && kapakPivot != null)
+        {
+            StartCoroutine(RotateKapak(true));
+        }
+
         // 2 saniye bekle
         yield return new WaitForSeconds(2f);
 
         //  нч ses
         if (innerVoiceClip != null && KarakterIcSesManager.Instance != null)
             KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, innerVoiceTime);
+
+        // ---- KAPAK KAPAT (ROTASYON) ----
+        if (!kapakHareket && kapakPivot != null)
+        {
+            StartCoroutine(RotateKapak(false));
+        }
 
         // 4 Dolap kapanma sesi
         if (dolapCloseClip != null)
@@ -54,7 +77,39 @@ public class dolapInteraktif : MonoBehaviour
         opern = true;
     }
 
+    IEnumerator RotateKapak(bool open)
+    {
+        kapakHareket = true;
+
+        float targetAngle = open ? openAngle : closeAngle;
+
+        while (true)
+        {
+            float currentY = kapakPivot.localEulerAngles.y;
+            if (currentY > 180) currentY -= 360;
+
+            float newY = Mathf.MoveTowards(
+                currentY,
+                targetAngle,
+                rotateSpeed * Time.deltaTime
+            );
+
+            kapakPivot.localEulerAngles = new Vector3(
+                kapakPivot.localEulerAngles.x,
+                newY,
+                kapakPivot.localEulerAngles.z
+            );
+
+            if (Mathf.Abs(newY - targetAngle) < 0.1f)
+                break;
+
+            yield return null;
+        }
+
+        kapakAcik = open;
+        kapakHareket = false;
+    }
 
 
-  
+
 }

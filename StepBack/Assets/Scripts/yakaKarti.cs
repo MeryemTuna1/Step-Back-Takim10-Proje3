@@ -8,15 +8,27 @@ public class yakaKarti : MonoBehaviour
     bool taken = false;
     public Animator animator;
     public AudioClip innerVoiceClip;
+
+    public plateCarry isO;
     void OnMouseDown()
     {
         if (taken) return;
+
+        // ---- ÞART: isO true deðilse ALAMAZ ----
+        if (isO == null || !isO.isOk)
+        {
+            Debug.Log("Yaka kartý için þart saðlanmadý!");
+            return;
+        }
+
         taken = true;
 
-        gameObject.SetActive(false);      // dolaptaki kart kaybolur
-        badgeOnNeck.SetActive(true);       // boyundaki kart görünür
+        gameObject.SetActive(false);
+        badgeOnNeck.SetActive(true);
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
         animator.SetTrigger("yaka");
     }
+
+    
 }

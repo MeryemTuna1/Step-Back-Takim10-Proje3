@@ -48,12 +48,16 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.Move(dir.normalized * moveSpeed * Time.deltaTime);
 
-            Quaternion targetRot = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRot,
-                rotationSpeed * Time.deltaTime
-            );
+            // SADECE 3rd Person'da karakter yönünü hareket yönüne çevir
+            if (!CameraManager.Instance.IsFirstPerson())
+            {
+                Quaternion targetRot = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    targetRot,
+                    rotationSpeed * Time.deltaTime
+                );
+            }
         }
 
         // GRAVITY

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FirstPersonCameraController : MonoBehaviour
 {
-    public Transform target;
+    public Transform target; // Player
     public Vector3 offset = new Vector3(0f, 1.6f, 0f);
     public float sensitivity = 3f;
 
@@ -19,12 +19,16 @@ public class FirstPersonCameraController : MonoBehaviour
     {
         if (!CameraManager.Instance.IsFirstPerson()) return;
 
+        // Mouse input
         yaw += Input.GetAxis("Mouse X") * sensitivity;
 
-        // OFFSET'I TARGET'IN LOCAL SPACE'ÝNDE UYGULA
+        // Kamera pozisyonu
         transform.position = target.TransformPoint(offset);
 
+        // Kamera rotasyonu (SADECE KAMERA)
         transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+
+        // Player rotasyonu (SADECE Y ekseni)
         target.rotation = Quaternion.Euler(0f, yaw, 0f);
     }
 

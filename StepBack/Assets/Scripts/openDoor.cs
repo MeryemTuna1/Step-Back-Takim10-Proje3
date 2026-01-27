@@ -24,6 +24,7 @@ public class openDoor : MonoBehaviour
     private bool isBusy = false;
     private Quaternion closedRotation;
 
+
     void Start()
     {
         if (doorHinge != null)
@@ -33,7 +34,7 @@ public class openDoor : MonoBehaviour
     void OnMouseDown()
     {
         // BU FONKSÝYON SADECE DOLAP COLLIDER'INA TIKLANINCA ÇALIÞIR
-        //if (isBusy) return;
+        if (isBusy) return;
 
         if(open.opern)
         {
@@ -61,7 +62,7 @@ public class openDoor : MonoBehaviour
         SFXAudioManager.Instance.PlaySFX(openDoorClip, 1f);
         yield return StartCoroutine(RotateDoor(openRotation));
 
-        yield return new WaitForSeconds(openDuration);
+       // yield return new WaitForSeconds(openDuration);
 
         // Player CLOSE
         if (playerAnim != null)

@@ -10267,15 +10267,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e724f8469d0d4c647bb8846e6c3229f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thirdPersonCam: {fileID: 1175967752}
   firstPersonCam: {fileID: 814552869}
+  thirdPersonCam: {fileID: 1175967752}
   topDownCam: {fileID: 979224708}
-  cameraYawRoot: {fileID: 1932703499}
   playerTarget: {fileID: 662665253}
-  thirdPersonDistance: 20
+  thirdPersonPivot: {fileID: 0}
+  cameraRoot: {fileID: 0}
+  thirdPersonOffset: {x: 0, y: 1.5, z: -3}
+  topDownOffset: {x: 0, y: 10, z: 0}
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
+  collisionPadding: 0.3
+  cameraRadius: 0.5
 --- !u!4 &539687362
 Transform:
   m_ObjectHideFlags: 0
@@ -12228,7 +12232,7 @@ GameObject:
   - component: {fileID: 662665262}
   - component: {fileID: 662665263}
   m_Layer: 0
-  m_Name: "player\u0130\u015F"
+  m_Name: "player\u0130\u015F2"
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12349,7 +12353,9 @@ MonoBehaviour:
   innerVoiceClip: {fileID: 8300000, guid: e7269fc8428af4d46bc0c6e38747ae00, type: 3}
   tabakAlmaClip: {fileID: 0}
   tabakBirakmaClip: {fileID: 0}
+  acelemVar: {fileID: 0}
   audioSource: {fileID: 0}
+  isOk: 0
 --- !u!114 &662665258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35451,9 +35457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c8a35af9985b5428c6f94a3fa9366a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 662665253}
-  mouseSensitivity: 3
-  distance: 20
+  maxDistance: 5
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1932703501
 MonoBehaviour:
   m_ObjectHideFlags: 0
