@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoworkerGroupTrigger : MonoBehaviour
 {
-  //  public stressKuculmePlayer stressController;
+    public stressKuculmePlayer stressController;
     public Transform[] coworkers;
 
     public AudioClip innerVoiceClip, innerVoiceClip1;
@@ -30,7 +30,7 @@ public class CoworkerGroupTrigger : MonoBehaviour
         
 
         // Küçülme
-       // stressController.transform.localScale -= Vector3.one * 0.05f;
+        stressController.transform.localScale -= Vector3.one * 0.05f;
 
         // NPC masaya bakmasýn
         foreach (Transform npc in coworkers)

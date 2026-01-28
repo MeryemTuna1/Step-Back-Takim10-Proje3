@@ -4,24 +4,17 @@ using UnityEngine;
 
 public class OfficeMonsterSequence : MonoBehaviour
 {
-
     public Transform deskPoint;
     public monsterAI[] coworkers;
 
+    public stressKuculmePlayer stressPlayer;
     public AudioClip innerVoiceClip1, innerVoiceClip;
-
-    void Start()
-    {
-        //  OYUN BAÞINDA HEPSÝNÝ GÝZLE
-        foreach (var npc in coworkers)
-        {
-            if (npc != null)
-                npc.gameObject.SetActive(false);
-        }
-    }
 
     public void StartSequence()
     {
+        if (stressPlayer != null)
+            stressPlayer.StartOfficeStress();
+
         StartCoroutine(SequenceRoutine());
     }
 
@@ -32,7 +25,6 @@ public class OfficeMonsterSequence : MonoBehaviour
         {
             if (npc == null) continue;
 
-            //  SIRASI GELÝNCE GÖRÜNSÜN
             npc.gameObject.SetActive(true);
 
             yield return StartCoroutine(
@@ -44,6 +36,8 @@ public class OfficeMonsterSequence : MonoBehaviour
         }
 
         // Hepsi bittikten sonra
+        
+
         yield return new WaitForSeconds(1f);
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip1);

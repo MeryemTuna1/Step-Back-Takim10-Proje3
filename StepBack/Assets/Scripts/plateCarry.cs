@@ -20,12 +20,10 @@ public class plateCarry : MonoBehaviour
 
     public AudioSource audioSource;   //  EKLENDÝ
 
-    public bool isOk = false;
+    
 
     void Update()
     {
-       
-
         // TABAK ALMA
         if (Input.GetMouseButton(0))
         {
@@ -34,7 +32,6 @@ public class plateCarry : MonoBehaviour
                 PickPlate();
                 KarakterIcSesManager.Instance.PlayInnerVoice(acelemVar);
                 Debug.Log("acelem var");
-                
             }
         }
 
@@ -45,7 +42,6 @@ public class plateCarry : MonoBehaviour
             {
                 DropPlate();
                 KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 10f);
-                
             }
         }
     }
@@ -89,8 +85,6 @@ public class plateCarry : MonoBehaviour
 
         carriedPlate = null;
         currentDropZone = null;
-
-        isOk = true;
     }
 
     void OnTriggerEnter(Collider other)

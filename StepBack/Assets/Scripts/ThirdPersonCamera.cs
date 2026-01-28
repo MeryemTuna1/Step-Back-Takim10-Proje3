@@ -5,8 +5,15 @@ using UnityEngine.UI;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
+    public Transform target;
+    public float mouseSensitivity = 3f;
+    public float distance;
+
+    float yaw;
+
+    [Header("Outline Raycast")]
     public float maxDistance = 5f;
-    public LayerMask interactLayer;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -14,35 +21,34 @@ public class ThirdPersonCamera : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-
-            Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.red, 1f);
-
-            if  (Physics.Raycast(ray, out hit, maxDistance, interactLayer))
+            if (Physics.Raycast(ray, out hit, maxDistance))
             {
-                Debug.Log("Raycast hit: " + hit.collider.name);
-
-                // Parent + Child her yerde ara (GARANTÝ)
-                Outline[] outlines = hit.collider.GetComponentsInParent<Outline>(true);
-
-                if (outlines.Length == 0)
+                Outline clickedOutline = hit.collider.GetComponent<Outline>();
+                if (clickedOutline != null)
                 {
-                    outlines = hit.collider.GetComponentsInChildren<Outline>(true);
+                    clickedOutline.OutlineWidth = 0f;
+                    clickedOutline.enabled = false;
                 }
-
-                Debug.Log("Bulunan Outline sayýsý: " + outlines.Length);
-
-                foreach (Outline o in outlines)
-                {
-                    Debug.Log("Outline kapatýldý: " + o.gameObject.name);
-                    o.OutlineWidth = 0f;
-                }
-            }
-            else
-            {
-                Debug.Log("Raycast hiçbir þeye çarpmadý!");
             }
         }
     }
+
+    void Start()
+    {
+        yaw = transform.eulerAngles.y;
+    }
+
+    void LateUpdate()
+    {
+        if (!CameraManager.Instance.IsThirdPerson()) return;
+
+        yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
+
+        transform.rotation = Quaternion.Euler(0, yaw, 0);
+        transform.position = target.position - transform.forward * distance;
+    }
+
+
 
     /*
     public Transform target;
