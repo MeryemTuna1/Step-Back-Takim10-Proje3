@@ -1901,6 +1901,7 @@ MonoBehaviour:
   target: {fileID: 543450653057212292}
   mouseSensitivity: 3
   distance: 4
+  maxDistance: 5
 --- !u!1 &901582561
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,9 +3399,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee84904a2ae1dff43b9331b271e68c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 5866666021394318846}
+  doorHinge: {fileID: 0}
+  openAngle: 90
+  rotateSpeed: 0
   openDoorClip: {fileID: 8300000, guid: 754a7cf544635344e98929bfc289f1d3, type: 3}
   closeDoorClip: {fileID: 8300000, guid: 5c753d786ee79af469a6e55ff6889588, type: 3}
+  playerAnim: {fileID: 0}
+  open: {fileID: 0}
 --- !u!65 &1639810021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4012,7 +4017,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774892564}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12203,7 +12208,9 @@ MonoBehaviour:
   innerVoiceClip: {fileID: 8300000, guid: e7269fc8428af4d46bc0c6e38747ae00, type: 3}
   tabakAlmaClip: {fileID: 8300000, guid: 98015b4674b8cfb43a184f7835515846, type: 3}
   tabakBirakmaClip: {fileID: 8300000, guid: 2253d7ad2a8577e468f3384eedbd3e79, type: 3}
+  acelemVar: {fileID: 0}
   audioSource: {fileID: 1647684400}
+  isOk: 0
 --- !u!114 &5866666021394318849
 MonoBehaviour:
   m_ObjectHideFlags: 0

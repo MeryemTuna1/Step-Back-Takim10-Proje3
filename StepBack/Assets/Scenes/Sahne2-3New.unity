@@ -21248,7 +21248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shrinkSpeed: 0.02
   targetScale: 0.85
-  innerVoiceClip: {fileID: 8300000, guid: e64cfba46a9c18b43af514fba94e74b7, type: 3}
+  innerVoiceClip: {fileID: 8300000, guid: 774c44b00075d8746ac141538fa0580a, type: 3}
 --- !u!1 &1178604583
 GameObject:
   m_ObjectHideFlags: 0
@@ -27185,7 +27185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c13a6f1d659e74d94278550f6c3a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: b48194b70bcd22d4d9a1de220f837d9b, type: 3}
+  clip: {fileID: 8300000, guid: 53935293e26dbe244b40200cdc23c7f3, type: 3}
 --- !u!1 &1492524641
 GameObject:
   m_ObjectHideFlags: 0
@@ -35257,7 +35257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraFocusPoint: {fileID: 1552691677}
   moveTime: 1.5
-  innerVoiceClip: {fileID: 8300000, guid: 4bcda7737d74be6419fbebe89f5de49c, type: 3}
+  innerVoiceClip: {fileID: 8300000, guid: e2ca294bc1891c743a70de0d6f3b86bf, type: 3}
   animator: {fileID: 2100725884}
 --- !u!1 &1911652411
 GameObject:
@@ -38445,7 +38445,6 @@ GameObject:
   - component: {fileID: 2100725884}
   - component: {fileID: 2100725883}
   - component: {fileID: 2100725882}
-  - component: {fileID: 2100725881}
   - component: {fileID: 2100725880}
   - component: {fileID: 2100725879}
   - component: {fileID: 2100725878}
@@ -38534,26 +38533,6 @@ CapsuleCollider:
   m_Height: 2.1301231
   m_Direction: 1
   m_Center: {x: 0, y: 0.9273727, z: 0}
---- !u!114 &2100725881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100725877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e017b79dcbf4fa749be04d2aef7c625a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carryPoint: {fileID: 2019811026}
-  playerAnimator: {fileID: 2100725884}
-  innerVoiceClip: {fileID: 8300000, guid: e7269fc8428af4d46bc0c6e38747ae00, type: 3}
-  tabakAlmaClip: {fileID: 8300000, guid: 98015b4674b8cfb43a184f7835515846, type: 3}
-  tabakBirakmaClip: {fileID: 8300000, guid: 2253d7ad2a8577e468f3384eedbd3e79, type: 3}
-  acelemVar: {fileID: 0}
-  audioSource: {fileID: 0}
-  isOk: 0
 --- !u!114 &2100725882
 MonoBehaviour:
   m_ObjectHideFlags: 0

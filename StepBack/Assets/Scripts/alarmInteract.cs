@@ -26,9 +26,11 @@ public class alarmInteract : MonoBehaviour
                 {
                     manager.StopAlarm();
                     CameraManager.Instance.SwitchToFirstPerson();
-                    KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 5f);
+                    KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 10f);
                     alarm = true;
-                   // Destroy(this);
+                    // Destroy(this);
+
+                 
                 }
             }
         }
