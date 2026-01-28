@@ -4,43 +4,100 @@ using UnityEngine;
 
 public class openDoor : MonoBehaviour
 {
+    [Header("Hinge (Door Pivot)")]
+    public Transform doorHinge;
 
+    [Header("Rotation")]
+    public float openAngle = 90f;
+    public float rotateSpeed ; // derece/sn gibi düþün
 
-    public Animator anim;
+    [Header("Audio")]
     public AudioClip openDoorClip;
     public AudioClip closeDoorClip;
 
-    private bool isUsed = false;
+    [Header("Player Animator (Optional)")]
+    public Animator playerAnim;
+
+    [Header("External (Optional)")]
+    public dolapInteraktif open;
+
+    private bool isOpen = false;
+    private bool isBusy = false;
+
+    private Quaternion closedRotation;
+    private Quaternion openRotation;
+
+    void Start()
+    {
+        if (doorHinge != null)
+        {
+            // GERÇEK kapalý pozisyon
+            closedRotation = doorHinge.localRotation;
+
+            // Kapalýdan açýk üret
+            openRotation = closedRotation * Quaternion.Euler(0f, 0f, openAngle);
+        }
+    }
 
     void OnMouseDown()
     {
-        if (isUsed) return;
-        isUsed = true;
+        if (isBusy) return;
 
-        StartCoroutine(DoorRoutine());
+        // Þart: sadece AÇARKEN kontrol et
+        if (!isOpen && open != null && !open.opern)
+            return;
+
+        // TOGGLE
+        if (isOpen)
+            StartCoroutine(CloseDoor());
+        else
+            StartCoroutine(OpenDoor());
     }
 
-    IEnumerator DoorRoutine()
+    IEnumerator OpenDoor()
     {
-        // Idle'a DÖNDÜKTEN SONRA objeyi kapat
-        gameObject.SetActive(false);
+        isBusy = true;
 
-        // Kapý açýlýyor
-        anim.SetTrigger("Open");
-        SFXAudioManager.Instance.PlaySFX(openDoorClip, 1f);
+        if (playerAnim != null)
+            playerAnim.SetTrigger("Open");
 
-        // Open anim süresi (clip süresi kadar)
-        yield return new WaitForSeconds(1.5f);
+        if (openDoorClip != null)
+            SFXAudioManager.Instance.PlaySFX(openDoorClip, 1f);
 
-        // Kapý kapanýyor
-       // anim.SetTrigger("Close");
-        SFXAudioManager.Instance.PlaySFX(closeDoorClip, 1f);
+        yield return StartCoroutine(RotateDoor(openRotation));
 
-        gameObject.SetActive(true);
+        isOpen = true;
+        isBusy = false;
+    }
 
-        // Close anim süresi
-        yield return new WaitForSeconds(1.5f);
+    IEnumerator CloseDoor()
+    {
+        isBusy = true;
 
-        
+        if (playerAnim != null)
+            playerAnim.SetTrigger("Close");
+
+        if (closeDoorClip != null)
+            SFXAudioManager.Instance.PlaySFX(closeDoorClip, 1f);
+
+        yield return StartCoroutine(RotateDoor(closedRotation));
+
+        isOpen = false;
+        isBusy = false;
+    }
+
+    IEnumerator RotateDoor(Quaternion targetRot)
+    {
+        while (Quaternion.Angle(doorHinge.localRotation, targetRot) > 0.1f)
+        {
+            doorHinge.localRotation = Quaternion.RotateTowards(
+                doorHinge.localRotation,
+                targetRot,
+                rotateSpeed * Time.deltaTime
+            );
+            yield return null;
+        }
+
+        doorHinge.localRotation = targetRot;
     }
 }

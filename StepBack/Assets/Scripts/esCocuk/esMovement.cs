@@ -17,10 +17,23 @@ public class esMovement : MonoBehaviour
     [Header("Audio")]
     public AudioClip waveSound;
 
-    void Start()
+    public plateCarry isOkey;
+
+    private bool hasStarted = false;
+
+    private void Start()
     {
         animator.applyRootMotion = false;
-        StartCoroutine(Routine());
+    }
+
+    void Update()
+    {
+        //  SADECE 1 KEZ BAÞLASIN
+        if (isOkey.isOk && !hasStarted)
+        {
+            hasStarted = true;
+            StartCoroutine(Routine());
+        }
     }
 
     IEnumerator Routine()
@@ -29,7 +42,7 @@ public class esMovement : MonoBehaviour
         animator.SetBool("IsSitting", true);
         animator.SetBool("IsWalking", false);
 
-        yield return new WaitForSeconds(35f);
+        yield return new WaitForSeconds(1f);
 
         // KALK YÜRÜ
         animator.SetBool("IsSitting", false);
@@ -49,19 +62,20 @@ public class esMovement : MonoBehaviour
 
         if (waveSound != null && audioSource != null)
             audioSource.PlayOneShot(waveSound);
-
-
     }
 
     IEnumerator MoveToPoint(Transform target)
     {
-
         while (Vector3.Distance(transform.position, target.position) > 0.1f)
         {
             // YÖNE DÖN
             Vector3 dir = (target.position - transform.position).normalized;
             Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, rotateSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                lookRot,
+                rotateSpeed * Time.deltaTime
+            );
 
             // ÝLERLE
             transform.position = Vector3.MoveTowards(

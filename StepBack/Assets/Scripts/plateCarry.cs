@@ -20,7 +20,7 @@ public class plateCarry : MonoBehaviour
 
     public AudioSource audioSource;   //  EKLENDÝ
 
-    
+    public bool isOk=false;
 
     void Update()
     {
@@ -42,6 +42,7 @@ public class plateCarry : MonoBehaviour
             {
                 DropPlate();
                 KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 10f);
+                isOk = true;
             }
         }
     }

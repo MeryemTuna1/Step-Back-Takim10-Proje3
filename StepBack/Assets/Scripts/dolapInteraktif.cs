@@ -14,45 +14,68 @@ public class dolapInteraktif : MonoBehaviour
     public AudioClip dolapOpenClip;
     public AudioClip dolapCloseClip;
 
+    [Header("Door")]
+    public doorKapak door;   //KAPAK SCRIPTÝ
+
+    [Header("State")]
+    public bool opern = false;
+
     private bool used = false;
+
+    public alarmInteract ok;
 
     void OnMouseDown()
     {
         if (used) return;
+
+        if (!ok.alarm)
+        {
+            Debug.Log("Alarm aktif deðil, dolap açýlamaz!");
+            return;
+        }
+
+        //  SADECE alarm true ise kilitle
         used = true;
 
         CameraManager.Instance.SwitchToThirdPerson();
         StartCoroutine(DolapSequence());
+
     }
 
     IEnumerator DolapSequence()
     {
-        // Dolap açýlma sesi
+        //  Ses
         if (dolapOpenClip != null)
             SFXAudioManager.Instance.PlaySFX(dolapOpenClip, 1f);
 
-        // 2 saniye bekle
+        //  KAPAÐI AÇ
+        if (door != null)
+            door.OpenFromSequence();
+
         yield return new WaitForSeconds(2f);
 
-        //  Ýç ses
+        // Ýç ses
         if (innerVoiceClip != null && KarakterIcSesManager.Instance != null)
             KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, innerVoiceTime);
 
-        // 4 Dolap kapanma sesi
+        //  KAPANMA SESÝ
         if (dolapCloseClip != null)
             SFXAudioManager.Instance.PlaySFX(dolapCloseClip, 1f);
 
+        yield return new WaitForSeconds(0.5f); //  garanti için küçük bekleme
 
-        yield return new WaitForSeconds(2f);
+        //  KAPAÐI KAPA
+        if (door != null)
+            door.CloseFromSequence();
 
-        //  Ýç ses
-        if (innerVoiceClip != null && KarakterIcSesManager.Instance != null)
+        yield return new WaitForSeconds(4f);
+
+        // Çocuk çaðýrma
+        if (cocukCagirdi != null && KarakterIcSesManager.Instance != null)
             KarakterIcSesManager.Instance.PlayInnerVoice(cocukCagirdi, innerVoiceTime);
 
-        Debug.Log("cocuk çaðýrma tamam");
+        opern = true;
+        Debug.Log("Dolap sekansý + kapak tamamlandý");
     }
 
-
-
-  
 }

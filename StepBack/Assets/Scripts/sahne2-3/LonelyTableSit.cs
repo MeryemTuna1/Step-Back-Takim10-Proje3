@@ -31,7 +31,7 @@ public class LonelyTableSit : MonoBehaviour
         player.PlaceTrayOnTable(trayPlacePoint);
 
         // Kamera TopDown
-        CameraManager.Instance.SwitchToTopDown();
+        //CameraManager.Instance.SwitchToTopDown();
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
 
@@ -45,7 +45,7 @@ public class LonelyTableSit : MonoBehaviour
         yield return new WaitForSeconds(5f);
 
         // Kamera 3rd Person
-        CameraManager.Instance.SwitchToThirdPerson();
+        //CameraManager.Instance.SwitchToThirdPerson();
 
         // нч ses
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip2);

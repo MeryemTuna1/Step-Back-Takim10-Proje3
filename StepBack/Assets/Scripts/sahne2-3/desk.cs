@@ -28,7 +28,7 @@ public class desk : MonoBehaviour
     IEnumerator DeskSequence()
     {
         // Kamera FPS
-        CameraManager.Instance.SwitchToTopDown();
+       // CameraManager.Instance.SwitchToTopDown();
 
         // OTURMA ANÝMÝ
         playerAnim.SetTrigger("SitDown");
@@ -46,18 +46,19 @@ public class desk : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        // ÇALIÞMA BÝTÝÞ
-        playerAnim.SetBool("Working", false);
-
-        // KLAVYE SESÝ DURDUR
-        SFXAudioManager.Instance.StopLoopSFX(keyboardLoopSource);
-
+      
 
         yield return new WaitForSeconds(1f);
 
         // CANAVAR SEANSI
         FindObjectOfType<OfficeMonsterSequence>().StartSequence();
-        CameraManager.Instance.SwitchToFirstPerson();
+        //  CameraManager.Instance.SwitchToFirstPerson();
+
+        // ÇALIÞMA BÝTÝÞ
+        playerAnim.SetBool("Working", false);
+
+        // KLAVYE SESÝ DURDUR
+        SFXAudioManager.Instance.StopLoopSFX(keyboardLoopSource);
     }
 
 

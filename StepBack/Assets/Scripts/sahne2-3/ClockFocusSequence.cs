@@ -23,7 +23,7 @@ public class ClockFocusSequence : MonoBehaviour
     IEnumerator FocusClock()
     {
         // FPS’e geç
-        CameraManager.Instance.SwitchToFirstPerson();
+       // CameraManager.Instance.SwitchToFirstPerson();
 
         yield return new WaitForEndOfFrame();
 

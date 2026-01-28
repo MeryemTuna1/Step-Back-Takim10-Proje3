@@ -7,20 +7,26 @@ public class OfficeMonsterSequence : MonoBehaviour
     public Transform deskPoint;
     public monsterAI[] coworkers;
 
-    public stressKuculmePlayer stressPlayer;
     public AudioClip innerVoiceClip1, innerVoiceClip;
+
+    void Start()
+    {
+        //  SAHNE BAÞINDA HEPSÝ KAPALI
+        foreach (var npc in coworkers)
+        {
+            if (npc != null)
+                npc.gameObject.SetActive(false);
+        }
+    }
 
     public void StartSequence()
     {
-        if (stressPlayer != null)
-            stressPlayer.StartOfficeStress();
-
         StartCoroutine(SequenceRoutine());
     }
 
     IEnumerator SequenceRoutine()
     {
-        // CANAVARLAR SIRAYLA
+        //  CANAVARLAR SIRAYLA AÇILIR
         foreach (var npc in coworkers)
         {
             if (npc == null) continue;
@@ -31,18 +37,17 @@ public class OfficeMonsterSequence : MonoBehaviour
                 npc.GoToDeskAndDrop(deskPoint)
             );
 
-            // Canavarlar arasýnda küçük boþluk (gerilim için)
+            // Gerilim boþluðu
             yield return new WaitForSeconds(0.5f);
         }
 
         // Hepsi bittikten sonra
-        
-
         yield return new WaitForSeconds(1f);
 
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip1);
 
         yield return new WaitForSeconds(2f);
+
         KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip);
     }
 }

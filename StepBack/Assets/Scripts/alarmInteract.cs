@@ -8,6 +8,7 @@ public class alarmInteract : MonoBehaviour
     public AudioClip innerVoiceClip;
     public wakeUpManager manager;
 
+    public bool alarm = false;
 
     void Update()
     {
@@ -26,8 +27,8 @@ public class alarmInteract : MonoBehaviour
                     manager.StopAlarm();
                     CameraManager.Instance.SwitchToFirstPerson();
                     KarakterIcSesManager.Instance.PlayInnerVoice(innerVoiceClip, 5f);
-
-                    Destroy(this);
+                    alarm = true;
+                   // Destroy(this);
                 }
             }
         }

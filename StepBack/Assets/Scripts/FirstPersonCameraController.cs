@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class FirstPersonCameraController : MonoBehaviour
 {
-    public Transform target;
-    public Vector3 offset;
+    public Transform target; // Player
+    public Vector3 offset = new Vector3(0f, 1.6f, 0f);
     public float sensitivity = 3f;
 
     float yaw;
-
-    // SHAKE deðiþkenleri
-    float shakeDuration = 0f;
-    float shakeMagnitude = 0f;
 
     void Start()
     {
@@ -23,23 +19,17 @@ public class FirstPersonCameraController : MonoBehaviour
     {
         if (!CameraManager.Instance.IsFirstPerson()) return;
 
-        //  Mouse X
+        // Mouse input
         yaw += Input.GetAxis("Mouse X") * sensitivity;
 
         // Kamera pozisyonu
-        transform.position = target.position + offset;
+        transform.position = target.TransformPoint(offset);
 
-        // Kamera sað-sol döner
+        // Kamera rotasyonu (SADECE KAMERA)
         transform.rotation = Quaternion.Euler(0f, yaw, 0f);
 
-        // Player da ayný yöne baksýn
-        target.rotation = Quaternion.Euler(0f, yaw, 0f);
-    }
-
-    public void StartShake(float duration, float magnitude)
-    {
-        shakeDuration = duration;
-        shakeMagnitude = magnitude;
+        // Player rotasyonu (SADECE Y ekseni)
+       // target.rotation = Quaternion.Euler(0f, yaw, 0f);
     }
 
     /*public Transform target;

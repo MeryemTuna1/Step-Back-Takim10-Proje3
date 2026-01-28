@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+
+    [Header("Player")]
+    //public Transform player;
+
     public static CameraManager Instance;
 
     public Camera thirdPersonCam;
@@ -51,39 +55,44 @@ public class CameraManager : MonoBehaviour
         }
 
         // Y sabitleme (HER ZAMAN EN SON)
-        Vector3 pos = activeCam.transform.position;
-        pos.y = initialCamY;
-        activeCam.transform.position = pos;
+         Vector3 pos = activeCam.transform.position;
+         pos.y = initialCamY;
+         activeCam.transform.position = pos;
+
+        
     }
 
     public void SwitchToThirdPerson()
     {
         SetActiveCamera(thirdPersonCam);
+       
     }
 
     public void SwitchToFirstPerson()
     {
         SetActiveCamera(firstPersonCam);
+       
     }
 
+  
     public void SwitchToTopDown()
     {
         SetActiveCamera(topDownCam);
     }
 
-    void SetActiveCamera(Camera cam)
-    {
-        thirdPersonCam.gameObject.SetActive(false);
-        firstPersonCam.gameObject.SetActive(false);
-        topDownCam.gameObject.SetActive(false);
+   void SetActiveCamera(Camera cam)
+     {
+         thirdPersonCam.gameObject.SetActive(false);
+         firstPersonCam.gameObject.SetActive(false);
+         topDownCam.gameObject.SetActive(false);
 
-        cam.gameObject.SetActive(true);
-        activeCam = cam;
+         cam.gameObject.SetActive(true);
+         activeCam = cam;
 
 
-       // Kameranýn PLAY ÖNCESÝ Y DEÐERÝNÝ KAYDET
-        initialCamY = cam.transform.position.y;
-    }
+        // Kameranýn PLAY ÖNCESÝ Y DEÐERÝNÝ KAYDET
+         initialCamY = cam.transform.position.y;
+     }
 
     //  HATA VEREN FONKSÝYON BURASIYDI
     public Camera GetActiveCamera()
